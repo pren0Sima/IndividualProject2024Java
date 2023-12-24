@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="" />
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Company processes created">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/EmployeeDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/PositionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,18 +27,41 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2ZzHwuA6z3W8r6lWBdnYiQhnTbS" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/University/3rd year/Приложно програмиране на Java/Individual project/code/IndividualProjectJava/src/main/resources&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.transportCompanyProject.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\Desktop\University\3rd year\Приложно програмиране на Java\Individual project\code\IndividualProjectJava\src\main\resources" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -37,5 +72,19 @@
       <updated>1703418230337</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Company processes created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Company processes created" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.AnnotationException" package="org.hibernate" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

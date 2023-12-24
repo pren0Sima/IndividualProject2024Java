@@ -4,57 +4,40 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.entity.Company;
+import org.transportCompanyProject.entity.Employee;
 
-import java.util.List;
-
-public class CompanyDao {
-    public static void addCompany(Company company) {
+public class EmployeeDao {
+    public static void addEmployee(Employee employee) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be save(), but it's deprecated
-            session.persist(company);
+            session.persist(employee);
             transaction.commit();
         }
     }
-    public static Company getCompanyById(long id) {
-        Company company;
+    public static Employee getEmployeeById(long id) {
+        Employee employee;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            company = session.get(Company.class, id);
+            employee = session.get(Employee.class, id);
             transaction.commit();
         }
-        return company;
+        return employee;
     }
-    public static void updateCompany(Company company) {
+    public static void updateEmployee(Employee employee) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be saveOrUpdate(), but it's deprecated
-            session.merge(company);
+            session.merge(employee);
             transaction.commit();
         }
     }
-    public static List<Company> getCompanies() {
-        List<Company> companies;
-        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();
-            companies = session.createQuery("Select c From Company c", Company.class)
-                    .getResultList();
-            transaction.commit();
-        }
-        return companies;
-    }
-    // delete company
-    public static void deleteCompany(Company company){
+    public static void deleteEmployee(Employee employee){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
             // it used to be delete(), but it's deprecated
-            session.remove(company);
+            session.remove(employee);
             transaction.commit();
         }
     }
-    // count all companies
-    public static int countCompanies(){
-        return getCompanies().size();
-    }
-
 }
