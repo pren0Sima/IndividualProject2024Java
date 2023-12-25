@@ -1,9 +1,9 @@
 package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 //@Table(name = "employee")
@@ -22,8 +22,11 @@ public class Employee {
     @Column(name="position")
     private PositionType positionType;
 
+    @Positive
+    @Digits(integer = 4, fraction = 2, message = "Salaries should start from 1000.00 and have 2 digits after the decimal point!")
+    @Column(name="salary")
+    private BigDecimal salary;
     @ManyToOne(fetch = FetchType.LAZY)
-//    @Column(name="transport_company_id")
     private Company company;
 
     public Employee(String name, PositionType positionType) {
@@ -79,12 +82,14 @@ public class Employee {
 //        return Objects.equals(id, employee.id);
 //    }
 
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", positionType=" + positionType +
+                ", salary=" + salary +
                 ", company=" + company +
                 '}';
     }

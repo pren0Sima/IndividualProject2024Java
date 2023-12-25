@@ -3,9 +3,13 @@ package org.transportCompanyProject.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.dto.CompanyDto;
+import org.transportCompanyProject.dto.EmployeeDto;
 import org.transportCompanyProject.entity.Company;
+import org.transportCompanyProject.entity.Employee;
 
 import java.util.List;
+import java.util.Set;
 
 public class CompanyDao {
     public static void addCompany(Company company) {
@@ -43,6 +47,18 @@ public class CompanyDao {
         }
         return companies;
     }
+    public static List<CompanyDto> getCompaniesDTO() {
+        List<CompanyDto> companies;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            companies = session
+                    .createQuery("select new org.transportCompanyProject.dto.CompanyDto(c.id, c.name) " +
+                            "from Company c", CompanyDto.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return companies;
+    }
     // delete company
     public static void deleteCompany(Company company){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
@@ -57,4 +73,38 @@ public class CompanyDao {
         return getCompanies().size();
     }
 
+// Lection 7
+    // 1st method:
+    public static Set<Employee> getCompanyEmployees(long id) {
+        Company company;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            company = session.createQuery(
+                    "select c from Company c" +
+                            " join fetch c.employees" +
+                            " where c.id = :id",
+                    Company.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            transaction.commit();
+        }
+        return company.getEmployees();
+    }
+
+    // 2nd method: DTO - data transfer object
+    public static List<EmployeeDto> getCompanyEmployeesDTO(long id) {
+        List<EmployeeDto> employees;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
+            Transaction transaction = session.beginTransaction();
+            employees = session.createQuery(
+                    "select new org.transportCompanyProject.dto.EmployeeDto(e.id, e.name, e.positionType, e.company) from Employee e" +
+                            " join e.company c" +
+                            " where c.id = :id",
+                    EmployeeDto.class)
+                    .setParameter("id", id)
+                    .getResultList();
+            transaction.commit();
+        }
+        return employees;
+    }
 }

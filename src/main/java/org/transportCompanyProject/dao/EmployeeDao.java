@@ -6,6 +6,8 @@ import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
 
+import java.util.List;
+
 public class EmployeeDao {
     public static void addEmployee(Employee employee) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -39,5 +41,15 @@ public class EmployeeDao {
             session.remove(employee);
             transaction.commit();
         }
+    }
+    public static List<Employee> getEmployees() {
+        List<Employee> employees;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            employees = session.createQuery("Select e From Employee e", Employee.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return employees;
     }
 }
