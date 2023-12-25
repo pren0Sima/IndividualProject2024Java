@@ -1,10 +1,10 @@
 package org.transportCompanyProject;
 
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.dao.ClientDao;
 import org.transportCompanyProject.dao.CompanyDao;
 import org.transportCompanyProject.dao.EmployeeDao;
-import org.transportCompanyProject.dto.CompanyDto;
-import org.transportCompanyProject.dto.EmployeeDto;
+import org.transportCompanyProject.entity.Client;
 import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
 import org.transportCompanyProject.entity.PositionType;
@@ -25,10 +25,10 @@ public class Main {
         company3.setOvercharge(BigDecimal.valueOf(30));
         Company company4 = new Company(4,"Union Ivkoni");
         company4.setOvercharge(BigDecimal.valueOf(20));
-        CompanyDao.updateCompany(company1);
-        CompanyDao.updateCompany(company2);
-        CompanyDao.updateCompany(company3);
-        CompanyDao.updateCompany(company4);
+        CompanyDao.saveOrUpdateCompany(company1);
+        CompanyDao.saveOrUpdateCompany(company2);
+        CompanyDao.saveOrUpdateCompany(company3);
+        CompanyDao.saveOrUpdateCompany(company4);
 //        // 3. displaying a company from the db
 //        System.out.println(CompanyDao.getCompanyById(2));
 //        // 4. updating a company
@@ -86,7 +86,17 @@ public class Main {
         employee3.setCompany(CompanyDao.getCompanyById(1));
         Employee employee4 = new Employee(2, "Pavlina Velichkova", PositionType.MANAGER, BigDecimal.valueOf(2000));
         employee4.setCompany(CompanyDao.getCompanyById(2));
-        EmployeeDao.updateEmployee(employee3);
-        EmployeeDao.updateEmployee(employee4);
+        EmployeeDao.saveOrUpdateEmployee(employee3);
+        EmployeeDao.saveOrUpdateEmployee(employee4);
+
+        // III. Client
+        // 1. add clients
+        Client client1 = new Client(1, "Samantha");
+        Client client2 = new Client(2,"Lidl");
+        ClientDao.saveOrUpdateClient(client1);
+        ClientDao.saveOrUpdateClient(client2);
+//        ClientDao.deleteClient(ClientDao.getClientById(3));
+        // 2. display clients
+        ClientDao.getClientsDTO().stream().forEach(System.out::println);
     }
 }

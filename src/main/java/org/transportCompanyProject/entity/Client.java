@@ -20,5 +20,56 @@ public class Client {
 
     @PositiveOrZero
     @Column(name="balance")
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
+
+    public Client() {
+    }
+
+    public Client(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Client(long id, String name, BigDecimal balance) {
+        this.id = id;
+        this.name = name;
+        this.balance = balance;
+    }
+
+    public Client(String name) {
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }

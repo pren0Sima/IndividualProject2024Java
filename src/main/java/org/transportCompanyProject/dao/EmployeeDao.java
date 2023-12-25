@@ -3,7 +3,6 @@ package org.transportCompanyProject.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class EmployeeDao {
         }
         return employee;
     }
-    public static void updateEmployee(Employee employee) {
+    public static void saveOrUpdateEmployee(Employee employee) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be saveOrUpdate(), but it's deprecated

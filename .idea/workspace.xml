@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Accounting functionality added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ClientDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Client.java" afterDir="false" />
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Client abstraction added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dto/ClientDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ClientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/EmployeeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703525306023</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Client abstraction added">
+      <created>1703526851241</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703526851241</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -98,7 +105,8 @@
     <MESSAGE value="Employee functionality added" />
     <MESSAGE value="Dto functionality added" />
     <MESSAGE value="Accounting functionality added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Accounting functionality added" />
+    <MESSAGE value="Client abstraction added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Client abstraction added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -31,7 +31,7 @@ public class CompanyDao implements Accounting {
         }
         return company;
     }
-    public static void updateCompany(Company company) {
+    public static void saveOrUpdateCompany(Company company) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be saveOrUpdate(), but it's deprecated
@@ -117,7 +117,7 @@ public class CompanyDao implements Accounting {
         // change the object
         company.setExpenses(company.getExpenses().add(amount));
         // save the change into the db
-        updateCompany(company);
+        saveOrUpdateCompany(company);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class CompanyDao implements Accounting {
         // change the object
         company.setIncome(company.getIncome().add(amount));
         // save the change into the db
-        updateCompany(company);
+        saveOrUpdateCompany(company);
     }
 
     @Override

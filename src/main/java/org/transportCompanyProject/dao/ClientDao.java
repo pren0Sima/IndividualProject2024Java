@@ -3,6 +3,7 @@ package org.transportCompanyProject.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.dto.ClientDto;
 import org.transportCompanyProject.entity.Client;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class ClientDao {
         }
         return client;
     }
-    public static void updateClient(Client client) {
+    public static void saveOrUpdateClient(Client client) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be saveOrUpdate(), but it's deprecated
@@ -33,7 +34,7 @@ public class ClientDao {
             transaction.commit();
         }
     }
-    public static void deleteEmployee(Client client){
+    public static void deleteClient(Client client){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
             // it used to be delete(), but it's deprecated
@@ -46,6 +47,18 @@ public class ClientDao {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             clients = session.createQuery("Select c From Client c", Client.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return clients;
+    }
+    public static List<ClientDto> getClientsDTO() {
+        List<ClientDto> clients;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            clients = session
+                    .createQuery("select new org.transportCompanyProject.dto.ClientDto(c.id, c.name) " +
+                            "from Client c", ClientDto.class)
                     .getResultList();
             transaction.commit();
         }
