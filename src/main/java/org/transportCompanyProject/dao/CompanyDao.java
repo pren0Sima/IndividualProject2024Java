@@ -7,11 +7,13 @@ import org.transportCompanyProject.dto.CompanyDto;
 import org.transportCompanyProject.dto.EmployeeDto;
 import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
+import org.transportCompanyProject.interfaces.Accounting;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
-public class CompanyDao {
+public class CompanyDao implements Accounting {
     public static void addCompany(Company company) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -106,5 +108,29 @@ public class CompanyDao {
             transaction.commit();
         }
         return employees;
+    }
+
+
+    // from Accounting interface
+    @Override
+    public void addToExpenses(BigDecimal amount, Company company) {
+        // change the object
+        company.setExpenses(company.getExpenses().add(amount));
+        // save the change into the db
+        updateCompany(company);
+    }
+
+    @Override
+    public void addToIncome(BigDecimal amount, Company company) {
+        // change the object
+        company.setIncome(company.getIncome().add(amount));
+        // save the change into the db
+        updateCompany(company);
+    }
+
+    @Override
+    public BigDecimal calculateProfit(Company company) {
+        // profit = income - expenses
+        return company.getIncome().subtract(company.getExpenses());
     }
 }

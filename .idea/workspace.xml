@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Employee functionality added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dto/CompanyDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dto/EmployeeDto.java" afterDir="false" />
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Accounting functionality added">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/interfaces/Accounting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/EmployeeDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Employee.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -45,13 +42,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/University/3rd year/Приложно програмиране на Java/Individual project/code/IndividualProjectJava/src/main/resources&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/HP/Desktop/University/3rd year/Приложно програмиране на Java/Individual project/code/IndividualProjectJava/src/main/resources"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.transportCompanyProject.dto" />
@@ -77,13 +75,22 @@
       <option name="project" value="LOCAL" />
       <updated>1703450902611</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Dto functionality added">
+      <created>1703519528834</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703519528834</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Company processes created" />
     <MESSAGE value="Employee functionality added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Employee functionality added" />
+    <MESSAGE value="Dto functionality added" />
+    <MESSAGE value="Accounting functionality added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Accounting functionality added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

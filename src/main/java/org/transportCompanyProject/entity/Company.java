@@ -1,10 +1,9 @@
 package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -20,9 +19,18 @@ public class Company {
     @Pattern(regexp = "^[A-Z].*", message = "Company should start with a capital letter!")
     private String name;
 
+    @Positive
+    @DecimalMin(value = "0.00")
+    private BigDecimal overcharge;
+
     // collection of employees
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private Set<Employee> employees;
+
+    @PositiveOrZero
+    private BigDecimal income = BigDecimal.ZERO;
+    @PositiveOrZero
+    private BigDecimal expenses = BigDecimal.ZERO;
 
     public Company() {
     }
@@ -45,6 +53,30 @@ public class Company {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getOvercharge() {
+        return overcharge;
+    }
+
+    public void setOvercharge(BigDecimal overcharge) {
+        this.overcharge = overcharge;
+    }
+
+    public BigDecimal getIncome() {
+        return income;
+    }
+
+    public void setIncome(BigDecimal income) {
+        this.income = income;
+    }
+
+    public BigDecimal getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(BigDecimal expenses) {
+        this.expenses = expenses;
     }
 
     public Set<Employee> getEmployees() {

@@ -15,14 +15,14 @@ public class Main {
         // 1. creating the database with all tables(without rows)
         SessionFactoryUtil.getSessionFactory().openSession();
 //        // 2. adding a company in the company table:
-//        Company company1 = new Company("Greco");
-//        Company company2 = new Company("Orbico");
-//        Company company3 = new Company("Telenor");
-//        Company company4 = new Company("Union Ivkoni");
-//        CompanyDao.addCompany(company1);
-//        CompanyDao.addCompany(company2);
-//        CompanyDao.addCompany(company3);
-//        CompanyDao.addCompany(company4);
+        Company company1 = new Company("Greco");
+        Company company2 = new Company("Orbico");
+        Company company3 = new Company("Telenor");
+        Company company4 = new Company("Union Ivkoni");
+        CompanyDao.addCompany(company1);
+        CompanyDao.addCompany(company2);
+        CompanyDao.addCompany(company3);
+        CompanyDao.addCompany(company4);
 //        // 3. displaying a company from the db
 //        System.out.println(CompanyDao.getCompanyById(2));
 //        // 4. updating a company
@@ -49,7 +49,7 @@ public class Main {
         // II. Employee
         // 1. Adding an employee to the base and connection it to a company
 //        Employee employee = new Employee("Pavlina Velichkova", PositionType.MANAGER);
-//        Company company5 = new Company("Orbico");;
+//        Company company5 = new Company("Orbico");
 //        employee.setCompany(company5);
 //        CompanyDao.addCompany(company5);
 //        EmployeeDao.addEmployee(employee);
@@ -64,7 +64,6 @@ public class Main {
 //        employee2.setCompany(CompanyDao.getCompanyById(6));
 //        EmployeeDao.addEmployee(employee2);
 
-
         // 4. getting the employees of a company
 //        // first way (with join fetch):
 //         CompanyDao.getCompanyEmployees(6)
@@ -75,5 +74,13 @@ public class Main {
 //                .stream().forEach(System.out::println);
 
 
+        // Let's try again.
+        // let's add employees. Again.
+        Employee employee3 = new Employee("Kiril Simeonov Velichkov", PositionType.ADMINISTRATOR);
+        employee3.setCompany(CompanyDao.getCompanyById(1));
+        Employee employee4 = new Employee("Pavlina Velichkova", PositionType.MANAGER);
+        employee4.setCompany(CompanyDao.getCompanyById(2));
+        EmployeeDao.addEmployee(employee3);
+        EmployeeDao.addEmployee(employee4);
     }
 }
