@@ -1,0 +1,54 @@
+package org.transportCompanyProject.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.entity.Client;
+
+import java.util.List;
+
+public class ClientDao {
+    public static void addClient(Client client) {
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            // it used to be save(), but it's deprecated
+            session.persist(client);
+            transaction.commit();
+        }
+    }
+    public static Client getClientById(long id) {
+        Client client;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            client = session.get(Client.class, id);
+            transaction.commit();
+        }
+        return client;
+    }
+    public static void updateClient(Client client) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            // it used to be saveOrUpdate(), but it's deprecated
+            session.merge(client);
+            transaction.commit();
+        }
+    }
+    public static void deleteEmployee(Client client){
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
+            Transaction transaction = session.beginTransaction();
+            // it used to be delete(), but it's deprecated
+            session.remove(client);
+            transaction.commit();
+        }
+    }
+    public static List<Client> getClients() {
+        List<Client> clients;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            clients = session.createQuery("Select c From Client c", Client.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return clients;
+    }
+}

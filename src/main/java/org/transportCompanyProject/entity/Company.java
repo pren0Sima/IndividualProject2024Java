@@ -2,6 +2,7 @@ package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -37,6 +38,17 @@ public class Company {
 
     public Company(String name) {
         this.name = name;
+    }
+
+    public Company(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Company(long id, String name, BigDecimal overcharge) {
+        this.id = id;
+        this.name = name;
+        this.overcharge = overcharge;
     }
 
     public long getId() {

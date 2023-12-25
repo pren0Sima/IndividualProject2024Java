@@ -29,6 +29,19 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
+    public Employee(long id, String name, PositionType positionType, BigDecimal salary) {
+        this.id = id;
+        this.name = name;
+        this.positionType = positionType;
+        this.salary = salary;
+    }
+
+    public Employee(long id, String name, PositionType positionType) {
+        this.id = id;
+        this.name = name;
+        this.positionType = positionType;
+    }
+
     public Employee(String name, PositionType positionType) {
         this.name = name;
         this.positionType = positionType;
@@ -68,7 +81,15 @@ public class Employee {
     public void setCompany(Company company) {
         this.company = company;
     }
-//
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+    //
 //    @Override
 //    public int hashCode() {
 //        return (int) id * name.hashCode();

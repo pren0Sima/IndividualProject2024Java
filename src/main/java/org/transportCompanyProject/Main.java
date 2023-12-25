@@ -9,20 +9,26 @@ import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
 import org.transportCompanyProject.entity.PositionType;
 
+import java.math.BigDecimal;
+
 public class Main {
     public static void main(String[] args) {
         // I. Company.
         // 1. creating the database with all tables(without rows)
         SessionFactoryUtil.getSessionFactory().openSession();
 //        // 2. adding a company in the company table:
-        Company company1 = new Company("Greco");
-        Company company2 = new Company("Orbico");
-        Company company3 = new Company("Telenor");
-        Company company4 = new Company("Union Ivkoni");
-        CompanyDao.addCompany(company1);
-        CompanyDao.addCompany(company2);
-        CompanyDao.addCompany(company3);
-        CompanyDao.addCompany(company4);
+        Company company1 = new Company(1, "Greco");
+        company1.setOvercharge(BigDecimal.valueOf(20));
+        Company company2 = new Company(2,"Orbico");
+        company2.setOvercharge(BigDecimal.valueOf(25));
+        Company company3 = new Company(3, "Telenor");
+        company3.setOvercharge(BigDecimal.valueOf(30));
+        Company company4 = new Company(4,"Union Ivkoni");
+        company4.setOvercharge(BigDecimal.valueOf(20));
+        CompanyDao.updateCompany(company1);
+        CompanyDao.updateCompany(company2);
+        CompanyDao.updateCompany(company3);
+        CompanyDao.updateCompany(company4);
 //        // 3. displaying a company from the db
 //        System.out.println(CompanyDao.getCompanyById(2));
 //        // 4. updating a company
@@ -76,11 +82,11 @@ public class Main {
 
         // Let's try again.
         // let's add employees. Again.
-        Employee employee3 = new Employee("Kiril Simeonov Velichkov", PositionType.ADMINISTRATOR);
+        Employee employee3 = new Employee(1, "Kiril Simeonov Velichkov", PositionType.ADMINISTRATOR, BigDecimal.valueOf(2000));
         employee3.setCompany(CompanyDao.getCompanyById(1));
-        Employee employee4 = new Employee("Pavlina Velichkova", PositionType.MANAGER);
+        Employee employee4 = new Employee(2, "Pavlina Velichkova", PositionType.MANAGER, BigDecimal.valueOf(2000));
         employee4.setCompany(CompanyDao.getCompanyById(2));
-        EmployeeDao.addEmployee(employee3);
-        EmployeeDao.addEmployee(employee4);
+        EmployeeDao.updateEmployee(employee3);
+        EmployeeDao.updateEmployee(employee4);
     }
 }
