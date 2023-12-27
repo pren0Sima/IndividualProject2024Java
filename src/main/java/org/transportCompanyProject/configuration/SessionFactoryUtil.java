@@ -7,6 +7,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.transportCompanyProject.entity.Client;
 import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
+import org.transportCompanyProject.entity.Itinerary;
 
 public class SessionFactoryUtil {
     private static SessionFactory sessionFactory;
@@ -17,6 +18,7 @@ public class SessionFactoryUtil {
             configuration.addAnnotatedClass(Company.class);
             configuration.addAnnotatedClass(Employee.class);
             configuration.addAnnotatedClass(Client.class);
+            configuration.addAnnotatedClass(Itinerary.class);
             ServiceRegistry serviceRegistry
                     = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

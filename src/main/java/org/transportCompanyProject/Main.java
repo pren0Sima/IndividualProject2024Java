@@ -4,12 +4,11 @@ import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dao.ClientDao;
 import org.transportCompanyProject.dao.CompanyDao;
 import org.transportCompanyProject.dao.EmployeeDao;
-import org.transportCompanyProject.entity.Client;
-import org.transportCompanyProject.entity.Company;
-import org.transportCompanyProject.entity.Employee;
-import org.transportCompanyProject.entity.PositionType;
+import org.transportCompanyProject.dao.ItineraryDao;
+import org.transportCompanyProject.entity.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
@@ -98,5 +97,18 @@ public class Main {
 //        ClientDao.deleteClient(ClientDao.getClientById(3));
         // 2. display clients
         ClientDao.getClientsDTO().stream().forEach(System.out::println);
+
+        // IV. Itinerary
+//        Itinerary itinerary1 = new Itinerary("Sofia, Obikolna street, 21",
+//                "Gabrovo, Stoletov street, 15", LocalDate.of(2024, 05, 21),
+//                LocalDate.of(2024, 05, 22));
+//        Itinerary itinerary2 = new Itinerary("Varna, Pirin street 26",
+//                "Plovdiv, Kukush street 3", LocalDate.of(2024, 06, 12),
+//                LocalDate.of(2024, 06, 12));
+
+//        ItineraryDao.addItinerary(itinerary1);
+//        ItineraryDao.addItinerary(itinerary2);
+//        ItineraryDao.addItinerary(new Itinerary());
+//        ItineraryDao.deleteItinerary(ItineraryDao.getItineraryById(1));
     }
 }
