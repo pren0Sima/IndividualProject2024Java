@@ -3,55 +3,54 @@ package org.transportCompanyProject.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.entity.Company;
-import org.transportCompanyProject.entity.Employee;
 import org.transportCompanyProject.entity.Itinerary;
+import org.transportCompanyProject.entity.VehicleType;
 
 import java.util.List;
 
-public class ItineraryDao {
-    public static void addItinerary(Itinerary itinerary) {
+public class VehicleTypeDao {
+    public static void addVehicleType(VehicleType vehicleType) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be save(), but it's deprecated
-            session.persist(itinerary);
+            session.persist(vehicleType);
             transaction.commit();
         }
     }
 
-    public static void deleteItinerary(Itinerary itinerary){
+    public static void deleteVehicleType(VehicleType vehicleType){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
             // it used to be delete(), but it's deprecated
-            session.remove(itinerary);
+            session.remove(vehicleType);
             transaction.commit();
         }
     }
-    public static Itinerary getItineraryById(long id) {
-        Itinerary itinerary;
+    public static VehicleType getVehicleTypeById(long id) {
+        VehicleType vehicleType;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            itinerary = session.get(Itinerary.class, id);
+            vehicleType = session.get(VehicleType.class, id);
             transaction.commit();
         }
-        return itinerary;
+        return vehicleType;
     }
-    public static void saveOrUpdateItinerary(Itinerary itinerary) {
+    public static void saveOrUpdateVehicleType(VehicleType vehicleType) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be saveOrUpdate(), but it's deprecated
-            session.merge(itinerary);
+            session.merge(vehicleType);
             transaction.commit();
         }
     }
-    public static List<Itinerary> getItineraries() {
-        List<Itinerary> itineraries;
+    public static List<VehicleType> getVehicleTypes() {
+        List<VehicleType> vehicleType;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            itineraries = session.createQuery("Select c From Itinerary c", Itinerary.class)
+            vehicleType = session.createQuery("Select vt From VehicleType vt", VehicleType.class)
                     .getResultList();
             transaction.commit();
         }
-        return itineraries;
+        return vehicleType;
     }
 }

@@ -39,9 +39,18 @@ public class Itinerary {
         this.dateOfDeparture = dateOfDeparture;
         this.dateOfArrival = dateOfArrive;
     }
+
+    public Itinerary(long id, String startingPoint, String destination, LocalDate dateOfDeparture, LocalDate dateOfArrival) {
+        this.id = id;
+        this.startingPoint = startingPoint;
+        this.destination = destination;
+        this.dateOfDeparture = dateOfDeparture;
+        this.dateOfArrival = dateOfArrival;
+    }
+
     @AssertTrue(message = "Departure date should be before the arrival date")
     private boolean isDepartureBeforeArrival() {
-        return dateOfDeparture == null || dateOfArrival == null || dateOfDeparture.isBefore(dateOfArrival);
+        return dateOfDeparture == null || dateOfArrival == null || !dateOfDeparture.isAfter(dateOfArrival);
     }
 
     @AssertTrue(message = "Destination must be different from the starting point")

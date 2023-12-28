@@ -1,10 +1,7 @@
 package org.transportCompanyProject;
 
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.dao.ClientDao;
-import org.transportCompanyProject.dao.CompanyDao;
-import org.transportCompanyProject.dao.EmployeeDao;
-import org.transportCompanyProject.dao.ItineraryDao;
+import org.transportCompanyProject.dao.*;
 import org.transportCompanyProject.entity.*;
 
 import java.math.BigDecimal;
@@ -99,16 +96,30 @@ public class Main {
         ClientDao.getClientsDTO().stream().forEach(System.out::println);
 
         // IV. Itinerary
-//        Itinerary itinerary1 = new Itinerary("Sofia, Obikolna street, 21",
-//                "Gabrovo, Stoletov street, 15", LocalDate.of(2024, 05, 21),
-//                LocalDate.of(2024, 05, 22));
-//        Itinerary itinerary2 = new Itinerary("Varna, Pirin street 26",
-//                "Plovdiv, Kukush street 3", LocalDate.of(2024, 06, 12),
-//                LocalDate.of(2024, 06, 12));
+        Itinerary itinerary1 = new Itinerary(1, "Sofia, Obikolna street, 21",
+                "Gabrovo, Stoletov street, 15", LocalDate.of(2024, 05, 21),
+                LocalDate.of(2024, 05, 22));
+        Itinerary itinerary2 = new Itinerary(2,"Varna, Pirin street 26",
+                "Plovdiv, Kukush street 3", LocalDate.of(2024, 06, 12),
+                LocalDate.of(2024, 06, 12));
 
-//        ItineraryDao.addItinerary(itinerary1);
-//        ItineraryDao.addItinerary(itinerary2);
-//        ItineraryDao.addItinerary(new Itinerary());
-//        ItineraryDao.deleteItinerary(ItineraryDao.getItineraryById(1));
+        ItineraryDao.saveOrUpdateItinerary(itinerary1);
+        ItineraryDao.saveOrUpdateItinerary(itinerary2);
+//        ItineraryDao.saveOrUpdateItinerary(new Itinerary());
+//        ItineraryDao.deleteItinerary(ItineraryDao.getItineraryById(3));
+
+        // V. VehicleType and Vehicle
+        // creating vehicle types
+        VehicleType vehicleType1 = new VehicleType(1, "Bus");
+        VehicleType vehicleType2 = new VehicleType(2, "Truck");
+        VehicleType vehicleType3 = new VehicleType(3, "Boat");
+        VehicleType vehicleType4 = new VehicleType(4, "Plane");
+
+        VehicleTypeDao.saveOrUpdateVehicleType(vehicleType1);
+        VehicleTypeDao.saveOrUpdateVehicleType(vehicleType2);
+        VehicleTypeDao.saveOrUpdateVehicleType(vehicleType3);
+        VehicleTypeDao.saveOrUpdateVehicleType(vehicleType4);
+
+        VehicleTypeDao.getVehicleTypes().stream().forEach(System.out::println);
     }
 }
