@@ -10,10 +10,10 @@ import java.util.Set;
 @Entity
 public class VehicleType {
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name="type", nullable = false)
+    @Column(name = "type", nullable = false)
     @Size(min = 2, max = 30, message = "Type must be between 2 and 30 characters long!")
     @Pattern(regexp = "^([A-Z].*)", message = "Vehicle type should start with a capital letter!")
     private String type;
