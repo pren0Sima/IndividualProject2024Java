@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import java.util.Set;
+
 @Table(name = "vehicle_type")
 @Entity
 public class VehicleType {
@@ -15,6 +17,8 @@ public class VehicleType {
     @Size(min = 2, max = 30, message = "Type must be between 2 and 30 characters long!")
     @Pattern(regexp = "^([A-Z].*)", message = "Vehicle type should start with a capital letter!")
     private String type;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vehicleType")
+    private Set<Vehicle> vehicles;
 
     public VehicleType() {
     }
@@ -42,6 +46,14 @@ public class VehicleType {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     @Override

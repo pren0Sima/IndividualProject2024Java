@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Table(name = "employee")
 @Entity
@@ -89,20 +88,6 @@ public class Employee {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
-    //
-//    @Override
-//    public int hashCode() {
-//        return (int) id * name.hashCode();
-//    }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Employee employee = (Employee) o;
-//        return Objects.equals(id, employee.id);
-//    }
-
 
     @Override
     public String toString() {
@@ -111,7 +96,7 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", positionType=" + positionType +
                 ", salary=" + salary +
-                ", company=" + company +
+//                ", company=" + company +
                 '}';
     }
 }

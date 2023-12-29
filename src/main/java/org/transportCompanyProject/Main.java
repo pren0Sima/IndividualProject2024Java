@@ -84,6 +84,8 @@ public class Main {
         employee4.setCompany(CompanyDao.getCompanyById(2));
         EmployeeDao.saveOrUpdateEmployee(employee3);
         EmployeeDao.saveOrUpdateEmployee(employee4);
+        // works as long as there isn't a foreign key.!!!!!!!!!!!!!!!!!!!!!!!!! to be fixed in the future !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        EmployeeDao.getEmployees().stream().forEach(System.out::println);
 
         // III. Client
         // 1. add clients
@@ -109,7 +111,7 @@ public class Main {
 //        ItineraryDao.deleteItinerary(ItineraryDao.getItineraryById(3));
 
         // V. VehicleType and Vehicle
-        // creating vehicle types
+        // 1. creating vehicle types
         VehicleType vehicleType1 = new VehicleType(1, "Bus");
         VehicleType vehicleType2 = new VehicleType(2, "Truck");
         VehicleType vehicleType3 = new VehicleType(3, "Boat");
@@ -121,5 +123,15 @@ public class Main {
         VehicleTypeDao.saveOrUpdateVehicleType(vehicleType4);
 
         VehicleTypeDao.getVehicleTypes().stream().forEach(System.out::println);
+
+        // 2. creating vehicles
+        Vehicle vehicle1 = new Vehicle();
+        vehicle1.setId(1);
+        vehicle1.setCompany(CompanyDao.getCompanyById(1));
+        vehicle1.setVehicleType(VehicleTypeDao.getVehicleTypeById(1));
+        VehicleDao.saveOrUpdateVehicle(vehicle1);
+//        VehicleDao.addVehicle(new Vehicle());
+//        VehicleDao.deleteVehicle(VehicleDao.getVehicleById(2));
+        VehicleDao.getVehicles().stream().forEach(System.out::println);
     }
 }
