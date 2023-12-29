@@ -20,7 +20,9 @@ public class SessionFactoryUtil {
             configuration.addAnnotatedClass(VehicleType.class);
             configuration.addAnnotatedClass(Driver.class);
             configuration.addAnnotatedClass(DrivingQualification.class);
-
+//            configuration.addAnnotatedClass(Cargo.class);
+            configuration.addAnnotatedClass(Passenger.class);
+            configuration.addAnnotatedClass(Goods.class);
             ServiceRegistry serviceRegistry
                     = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

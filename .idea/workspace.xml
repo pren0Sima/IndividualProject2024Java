@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added some functionality to the Vehicle and VehicleType. Need to figure out the dto's to display the foreign keys(for getVehicles()).">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/DriverDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/DrivingQualificationDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Driver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/DrivingQualification.java" afterDir="false" />
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added Driver, DriverDao, DrivingQualification, DrivingQualificationDao and merged Driver and DrivingQualification into a mapping table. Need to test the methods for them in main.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Cargo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Goods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Passenger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/VehicleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/VehicleType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703875303862</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added Driver, DriverDao, DrivingQualification, DrivingQualificationDao and merged Driver and DrivingQualification into a mapping table. Need to test the methods for them in main.">
+      <created>1703877090678</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703877090678</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -167,7 +172,8 @@
     <MESSAGE value="Client abstraction expanded (added dto)" />
     <MESSAGE value="VehicleType added and started Vehicle abstraction" />
     <MESSAGE value="Added some functionality to the Vehicle and VehicleType. Need to figure out the dto's to display the foreign keys(for getVehicles())." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some functionality to the Vehicle and VehicleType. Need to figure out the dto's to display the foreign keys(for getVehicles())." />
+    <MESSAGE value="Added Driver, DriverDao, DrivingQualification, DrivingQualificationDao and merged Driver and DrivingQualification into a mapping table. Need to test the methods for them in main." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Driver, DriverDao, DrivingQualification, DrivingQualificationDao and merged Driver and DrivingQualification into a mapping table. Need to test the methods for them in main." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
