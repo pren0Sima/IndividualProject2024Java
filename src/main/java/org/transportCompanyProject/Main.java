@@ -6,6 +6,9 @@ import org.transportCompanyProject.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -133,5 +136,42 @@ public class Main {
 //        VehicleDao.addVehicle(new Vehicle());
 //        VehicleDao.deleteVehicle(VehicleDao.getVehicleById(2));
         VehicleDao.getVehicles().stream().forEach(System.out::println);
+
+        // VI. Let's try GenericDao:
+        Passenger passenger1 = new Passenger(1, "Simona Vel");
+        Goods goods1 = new Goods(2,BigDecimal.valueOf(1.2));
+        try {
+            GenericDao<Passenger> passengerGenericDao = new GenericDao<>();
+            passengerGenericDao.saveOrUpdateEntity(passenger1);
+            GenericDao<Goods> goodsGenericDao = new GenericDao<>();
+            goodsGenericDao.saveOrUpdateEntity(goods1);
+
+            // deletes the row in cargo as well!
+            passengerGenericDao.deleteEntity(passenger1);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // VII. Driver and DrivingQualifications
+
+        String[] dqArray = {"A2", "B1", "C", "D", "Flammable", "Top Secret"};
+
+        Set<DrivingQualification> allDrivingQualifications = new HashSet<>();
+        int i = 1;
+        for (String dq : dqArray) {
+            allDrivingQualifications.add(new DrivingQualification(i, dq));
+            i++;
+        }
+
+        allDrivingQualifications.forEach(System.out::println);
+
+        for (DrivingQualification dq : allDrivingQualifications)
+            DrivingQualificationDao.saveOrUpdateDrivingQualification(dq);
+
+        Driver driver1 = new Driver(1,"Mysterious private driver");
+        // the driver must have a name!
+        DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(2), driver1);
+        DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(6), driver1);
+
     }
 }

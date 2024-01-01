@@ -1,12 +1,12 @@
 package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
-// doesn't create the base class' table, since it's not an entity
-@MappedSuperclass
-//@Entity
+// doesn't create the base class' table, since it's not an entity (MAYBE THAT'S NOT THE WAY TO GO!)
+//@MappedSuperclass
+@Entity
 @Table(name = "cargo")
 // creates the base class' table, bc it's an entity
-//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Cargo {
     @Id
     @Column(name = "id", nullable = false)

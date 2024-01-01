@@ -4,8 +4,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.entity.Driver;
+import org.transportCompanyProject.entity.DrivingQualification;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DriverDao {
     public static void addDriver(Driver driver){
@@ -49,5 +52,22 @@ public class DriverDao {
             transaction.commit();
         }
         return drivers;
+    }
+    // adding driving qualifications to drivers
+    public static void addDrivingQualificationToDriver(DrivingQualification drivingQualification, Driver driver) {
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            if(driver.getDrivingQualifications() == null){
+                Set<DrivingQualification> dqs = new HashSet<>();
+                driver.setDrivingQualifications(dqs);
+            }
+            driver.getDrivingQualifications().add(drivingQualification);
+            // if the qualification is not in the database => add it; same for the driver
+            session.merge(drivingQualification);
+            session.merge(driver);
+
+            transaction.commit();
+        }
     }
 }
