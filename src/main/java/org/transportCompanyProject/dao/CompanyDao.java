@@ -94,7 +94,7 @@ public class CompanyDao implements Accounting {
     }
 
     // 2nd method: DTO - data transfer object
-    public static List<EmployeeDto> getCompanyEmployeesDTO(long id) {
+    public static List<EmployeeDto> getCompanyEmployeesDTO(long company_id) {
         List<EmployeeDto> employees;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
@@ -103,7 +103,7 @@ public class CompanyDao implements Accounting {
                             " join e.company c" +
                             " where c.id = :id",
                     EmployeeDto.class)
-                    .setParameter("id", id)
+                    .setParameter("id", company_id)
                     .getResultList();
             transaction.commit();
         }

@@ -3,6 +3,7 @@ package org.transportCompanyProject.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.dto.EmployeeDto;
 import org.transportCompanyProject.entity.Employee;
 
 import java.util.List;
@@ -46,6 +47,21 @@ public class EmployeeDao {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             employees = session.createQuery("Select e From Employee e", Employee.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return employees;
+    }
+
+    public static List<EmployeeDto> getEmployeesDTO() {
+        List<EmployeeDto> employees;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            employees = session
+                    .createQuery(
+                            "Select new org.transportCompanyProject.dto.EmployeeDto(e.id, " +
+                                    "e.name, e.positionType, e.company)" +
+                            " From Employee e", EmployeeDto.class)
                     .getResultList();
             transaction.commit();
         }

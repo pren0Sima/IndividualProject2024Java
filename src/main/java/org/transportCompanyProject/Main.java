@@ -75,8 +75,7 @@ public class Main {
 //                 .stream().forEach(System.out::println);
 //        // second way (with dto):
 ////        System.out.println(CompanyDao.getCompanyEmployeesDTO(6));
-//        CompanyDao.getCompanyEmployeesDTO(6)
-//                .stream().forEach(System.out::println);
+
 
 
         // Let's try again.
@@ -88,7 +87,10 @@ public class Main {
         EmployeeDao.saveOrUpdateEmployee(employee3);
         EmployeeDao.saveOrUpdateEmployee(employee4);
         // works as long as there isn't a foreign key.!!!!!!!!!!!!!!!!!!!!!!!!! to be fixed in the future !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        EmployeeDao.getEmployees().stream().forEach(System.out::println);
+        EmployeeDao.getEmployeesDTO().stream().forEach(System.out::println);
+        //        System.out.println("Company 1's employees: ");
+//        CompanyDao.getCompanyEmployeesDTO(1)
+//                .stream().forEach(System.out::println);
 
         // III. Client
         // 1. add clients
@@ -136,6 +138,9 @@ public class Main {
 //        VehicleDao.addVehicle(new Vehicle());
 //        VehicleDao.deleteVehicle(VehicleDao.getVehicleById(2));
         VehicleDao.getVehicles().stream().forEach(System.out::println);
+////
+//        System.out.println("Vehicle Type: ");
+//        VehicleDao.getVehicleType(vehicle1);
 
         // VI. Let's try GenericDao:
         Passenger passenger1 = new Passenger(1, "Simona Vel");
