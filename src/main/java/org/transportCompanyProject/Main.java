@@ -102,7 +102,7 @@ public class Main {
         // 2. display clients
         ClientDao.getClientsDTO().stream().forEach(System.out::println);
 
-        // IV. Itinerary
+        // IV. Itinerary - to be changed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
         Itinerary itinerary1 = new Itinerary(1, "Sofia, Obikolna street, 21",
                 "Gabrovo, Stoletov street, 15", LocalDate.of(2024, 05, 21),
                 LocalDate.of(2024, 05, 22));

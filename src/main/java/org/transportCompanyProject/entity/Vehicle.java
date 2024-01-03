@@ -2,6 +2,8 @@ package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
@@ -16,6 +18,9 @@ public class Vehicle {
 //    @Column(name = "vehicle_type")
     @ManyToOne(fetch = FetchType.LAZY)
     private VehicleType vehicleType;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vehicle")
+    private Set<Itinerary> itineraries;
     public Vehicle() {
     }
 

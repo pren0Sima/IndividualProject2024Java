@@ -1,6 +1,9 @@
 package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
+
+import java.util.Set;
+
 // doesn't create the base class' table, since it's not an entity (MAYBE THAT'S NOT THE WAY TO GO!)
 //@MappedSuperclass
 @Entity
@@ -12,7 +15,8 @@ public class Cargo {
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @ManyToMany(mappedBy = "cargo", fetch = FetchType.LAZY)
+    private Set<Itinerary> itineraries;
     public Cargo() {
     }
 

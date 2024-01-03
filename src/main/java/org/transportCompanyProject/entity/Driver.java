@@ -19,8 +19,11 @@ public class Driver {
     @Pattern(regexp = "^([A-Z].*)\s([a-zA-Z].*)", message = "First name should start with a capital letter and there should be at least a first and last name!")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<DrivingQualification> drivingQualifications;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+    private Set<Itinerary> itineraries;
 
     public Driver() {
     }

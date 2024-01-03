@@ -57,15 +57,19 @@ public class DriverDao {
     public static void addDrivingQualificationToDriver(DrivingQualification drivingQualification, Driver driver) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-
+            if(driver == null) {
+                driver = new Driver();
+            }
             if(driver.getDrivingQualifications() == null){
                 Set<DrivingQualification> dqs = new HashSet<>();
                 driver.setDrivingQualifications(dqs);
             }
             driver.getDrivingQualifications().add(drivingQualification);
             // if the qualification is not in the database => add it; same for the driver
-            session.merge(drivingQualification);
-            session.merge(driver);
+            DrivingQualificationDao.saveOrUpdateDrivingQualification(drivingQualification);
+            DriverDao.saveOrUpdateDriver(driver);
+//            session.merge(drivingQualification);
+//            session.merge(driver);
 
             transaction.commit();
         }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "client")
@@ -21,6 +22,9 @@ public class Client {
     @PositiveOrZero
     @Column(name="balance")
     private BigDecimal balance = BigDecimal.ZERO;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private Set<Itinerary> itineraries;
 
     public Client() {
     }
