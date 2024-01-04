@@ -81,9 +81,9 @@ public class Main {
 
         // Let's try again.
         // II. let's add employees. Again.
-        Employee employee3 = new Employee(1, "Kiril Simeonov Velichkov", PositionType.ADMINISTRATOR, BigDecimal.valueOf(2000));
+        Employee employee3 = new Employee(1, "Linda The Smartest", PositionType.ADMINISTRATOR, BigDecimal.valueOf(4200));
         employee3.setCompany(CompanyDao.getCompanyById(1));
-        Employee employee4 = new Employee(2, "Pavlina Velichkova", PositionType.MANAGER, BigDecimal.valueOf(2000));
+        Employee employee4 = new Employee(2, "Johan Naz", PositionType.MANAGER, BigDecimal.valueOf(3000));
         employee4.setCompany(CompanyDao.getCompanyById(2));
         EmployeeDao.saveOrUpdateEmployee(employee3);
         EmployeeDao.saveOrUpdateEmployee(employee4);
@@ -207,12 +207,32 @@ public class Main {
         CompanyDao.saveOrUpdateCompany(nestle2);
 
         CompanyDao.companiesFindByProfitBetween(BigDecimal.valueOf(10000), BigDecimal.valueOf(50000)).forEach(System.out::println);
-
         // 4. Order by income
         CompanyDao.getOrderedCompaniesByIncome().forEach(System.out::println);
-
         // 5. Order by name
         CompanyDao.getOrderedCompaniesByName().forEach(System.out::println);
+        // 6. Order by name and income
+        CompanyDao.findByNameStartingWithAndIncomeGreaterThan("Nestle", BigDecimal.valueOf(9000)).forEach(System.out::println);
+        // 7. Queries for Employees:
+            // 7.1. create employees
+            Employee employee1 = new Employee(3, "Johannes Probs", PositionType.JANITOR, BigDecimal.valueOf(1200));
+            Employee employee2 = new Employee(4, "Benjamin Lao", PositionType.ADMINISTRATOR, BigDecimal.valueOf(3200));
+            EmployeeDao.saveOrUpdateEmployee(employee1);
+            EmployeeDao.saveOrUpdateEmployee(employee2);
+            // 7.2. find by salary
+        EmployeeDao.employeesFindBySalaryBetween(BigDecimal.valueOf(3000), BigDecimal.valueOf(4000)).forEach(System.out::println);
+            // 7.3. find by name start - not wanted
+        EmployeeDao.employeesFindByNameStartingWith("Johan").forEach(System.out::println);
+            // 7.4. order employees by salary(ACS):
+        EmployeeDao.getOrderedEmployeesBySalaryASC().forEach(System.out::println);
+            // 7.5. order employees by salary(DESC):
+        EmployeeDao.getOrderedEmployeesBySalaryDESC().forEach(System.out::println);
+            // 7.6. order employees by position(ASC):
+        EmployeeDao.getOrderedEmployeesByPositionASC().forEach(System.out::println);
+            // 7.7. order employees by position(ASC) and salary(DESC):
+        EmployeeDao.getOrderedEmployeesByASCPositionANDDESCSalary().forEach(System.out::println);
+            // 7.8. find employees that have a certain positionType:
+        EmployeeDao.employeesFindByPosition(PositionType.ADMINISTRATOR).forEach(System.out::println);
 
     }
 }

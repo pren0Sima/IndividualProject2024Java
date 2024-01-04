@@ -169,6 +169,23 @@ public class CompanyDao implements Accounting {
         }
         return companies;
     }
+    // by name and income
+    public static List<Company> findByNameStartingWithAndIncomeGreaterThan(String name, BigDecimal income) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Company> cr = cb.createQuery(Company.class);
+            Root<Company> root = cr.from(Company.class);
+
+            Predicate greaterThanIncome = cb.greaterThan(root.get("income"), income);
+            Predicate nameStartingWith = cb.like(root.get("name"), name + "%");
+
+            cr.select(root).where(cb.and(nameStartingWith, greaterThanIncome));
+
+            Query<Company> query = session.createQuery(cr);
+            List<Company> companies = query.getResultList();
+            return companies;
+        }
+    }
     // from Accounting interface
     @Override
     public void addToExpenses(BigDecimal amount, Company company) {
