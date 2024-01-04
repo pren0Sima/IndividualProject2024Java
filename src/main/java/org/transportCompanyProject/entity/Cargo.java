@@ -12,7 +12,7 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cargo {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToMany(mappedBy = "cargo", fetch = FetchType.LAZY)

@@ -7,7 +7,6 @@ import org.transportCompanyProject.entity.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Main {
@@ -28,6 +27,8 @@ public class Main {
         CompanyDao.saveOrUpdateCompany(company2);
         CompanyDao.saveOrUpdateCompany(company3);
         CompanyDao.saveOrUpdateCompany(company4);
+
+        /*
 //        // 3. displaying a company from the db
 //        System.out.println(CompanyDao.getCompanyById(2));
 //        // 4. updating a company
@@ -76,10 +77,10 @@ public class Main {
 //        // second way (with dto):
 ////        System.out.println(CompanyDao.getCompanyEmployeesDTO(6));
 
-
+*/
 
         // Let's try again.
-        // let's add employees. Again.
+        // II. let's add employees. Again.
         Employee employee3 = new Employee(1, "Kiril Simeonov Velichkov", PositionType.ADMINISTRATOR, BigDecimal.valueOf(2000));
         employee3.setCompany(CompanyDao.getCompanyById(1));
         Employee employee4 = new Employee(2, "Pavlina Velichkova", PositionType.MANAGER, BigDecimal.valueOf(2000));
@@ -168,15 +169,50 @@ public class Main {
             i++;
         }
 
-        allDrivingQualifications.forEach(System.out::println);
-
         for (DrivingQualification dq : allDrivingQualifications)
             DrivingQualificationDao.saveOrUpdateDrivingQualification(dq);
+
+        allDrivingQualifications.forEach(System.out::println);
 
         Driver driver1 = new Driver(1,"Mysterious private driver");
         // the driver must have a name!
         DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(2), driver1);
         DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(6), driver1);
+
+
+        // VIII. criteria queries
+        // 1. Add companies in db
+        Company nestle1 = new Company(5,"Nestle 1");
+        Company nestle2 = new Company(6,"Nestle 2");
+        CompanyDao.saveOrUpdateCompany(nestle1);
+        CompanyDao.saveOrUpdateCompany(nestle2);
+
+        // 2. Check for companies starting with a string:
+        CompanyDao.companiesFindByNameStartingWith("Nestle").forEach(System.out::println);
+
+        // 3. Check for companies that have an income between 10000 and 50000
+            // 3.1. manipulate the data
+        company1.setIncome(BigDecimal.valueOf(40000));
+        company2.setIncome(BigDecimal.valueOf(1000));
+        company3.setIncome(BigDecimal.valueOf(140000));
+        company4.setIncome(BigDecimal.valueOf(30000));
+        nestle1.setIncome(BigDecimal.valueOf(100000));
+        nestle2.setIncome(BigDecimal.valueOf(10000));
+
+        CompanyDao.saveOrUpdateCompany(company1);
+        CompanyDao.saveOrUpdateCompany(company2);
+        CompanyDao.saveOrUpdateCompany(company3);
+        CompanyDao.saveOrUpdateCompany(company4);
+        CompanyDao.saveOrUpdateCompany(nestle1);
+        CompanyDao.saveOrUpdateCompany(nestle2);
+
+        CompanyDao.companiesFindByProfitBetween(BigDecimal.valueOf(10000), BigDecimal.valueOf(50000)).forEach(System.out::println);
+
+        // 4. Order by income
+        CompanyDao.getOrderedCompaniesByIncome().forEach(System.out::println);
+
+        // 5. Order by name
+        CompanyDao.getOrderedCompaniesByName().forEach(System.out::println);
 
     }
 }

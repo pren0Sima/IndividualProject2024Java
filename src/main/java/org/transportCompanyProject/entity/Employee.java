@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 public class Employee {
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name="id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

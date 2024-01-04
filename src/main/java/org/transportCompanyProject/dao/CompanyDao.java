@@ -1,7 +1,12 @@
 package org.transportCompanyProject.dao;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dto.CompanyDto;
 import org.transportCompanyProject.dto.EmployeeDto;
@@ -111,6 +116,59 @@ public class CompanyDao implements Accounting {
     }
 
 
+    // Criteria queries
+    public static List<Company> companiesFindByProfitBetween(BigDecimal bottom, BigDecimal top) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Company> cr = cb.createQuery(Company.class);
+            Root<Company> root = cr.from(Company.class);
+
+            cr.select(root).where(cb.between(root.get("income"), bottom, top));
+
+            Query<Company> query = session.createQuery(cr);
+            return query.getResultList();
+        }
+    }
+    // company by name
+    public static List<Company> companiesFindByNameStartingWith(String name) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Company> cr = cb.createQuery(Company.class);
+            Root<Company> root = cr.from(Company.class);
+
+            Predicate nameStartingWith = cb.like(root.get("name"), name + "%");
+
+            cr.select(root).where(nameStartingWith);
+
+            Query<Company> query = session.createQuery(cr);
+            List<Company> companies = query.getResultList();
+            return companies;
+        }
+    }
+    // sorting by name and income
+    public static List<Company> getOrderedCompaniesByIncome() {
+        List<Company> companies;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            companies = session.createQuery("Select c From Company c" +
+                            " ORDER BY c.income", Company.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return companies;
+    }
+
+    public static List<Company> getOrderedCompaniesByName() {
+        List<Company> companies;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            companies = session.createQuery("Select c From Company c" +
+                            " ORDER BY c.name", Company.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return companies;
+    }
     // from Accounting interface
     @Override
     public void addToExpenses(BigDecimal amount, Company company) {
