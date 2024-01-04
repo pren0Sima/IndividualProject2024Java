@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name="transport_company")
 public class Company {
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name="id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

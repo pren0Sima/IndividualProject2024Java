@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "driver")
 public class Driver {
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name="id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 public class VehicleType {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "type", nullable = false)

@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name="itinerary")
 public class Itinerary {
-    @Column(name="id", nullable=false)
+    @Column(name="id", nullable=false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long id;

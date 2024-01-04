@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "driving_qualifications")
 public class DrivingQualification {
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name="id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long id;
