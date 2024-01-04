@@ -234,5 +234,19 @@ public class Main {
             // 7.8. find employees that have a certain positionType:
         EmployeeDao.employeesFindByPosition(PositionType.ADMINISTRATOR).forEach(System.out::println);
 
+
+            // 8. find itineraries with the same destination:
+        Itinerary itinerary3 = new Itinerary(3,"Sofia, Cherni Vrah boulevard 17",
+                "Plovdiv, Kukush street 12", LocalDate.of(2024, 07, 21),
+                LocalDate.of(2024, 07, 23));
+        ItineraryDao.saveOrUpdateItinerary(itinerary3);
+        // 8.1. 2 to Plovdiv:
+        ItineraryDao.itinerariesFindByDestination("Plovdiv").forEach(System.out::println);
+        // 8.2. none to Shumen:
+        ItineraryDao.itinerariesFindByDestination("Shumen").forEach(System.out::println);
+
+            // 9. order itineraries by destination:
+        ItineraryDao.getOrderedItinerariesByDestination().forEach(System.out::println);
     }
+
 }

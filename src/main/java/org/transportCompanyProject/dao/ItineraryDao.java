@@ -1,8 +1,13 @@
 package org.transportCompanyProject.dao;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.entity.Employee;
 import org.transportCompanyProject.entity.Itinerary;
 
 import java.util.List;
@@ -47,6 +52,33 @@ public class ItineraryDao {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             itineraries = session.createQuery("Select c From Itinerary c", Itinerary.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return itineraries;
+    }
+
+    // criteria queries:
+    // get by same destination
+    public static List<Itinerary> itinerariesFindByDestination(String destinationSubstring) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Itinerary> cr = cb.createQuery(Itinerary.class);
+            Root<Itinerary> root = cr.from(Itinerary.class);
+            cr.select(root).where(cb.like(root.get("destination"), "%" + destinationSubstring + "%"));
+
+            Query<Itinerary> query = session.createQuery(cr);
+            List<Itinerary> itineraries = query.getResultList();
+            return itineraries;
+        }
+    }
+    // sort lexicographically
+    public static List<Itinerary> getOrderedItinerariesByDestination() {
+        List<Itinerary> itineraries;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            itineraries = session.createQuery("Select i From Itinerary i" +
+                            " ORDER BY i.destination", Itinerary.class)
                     .getResultList();
             transaction.commit();
         }
