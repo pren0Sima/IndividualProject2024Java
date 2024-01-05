@@ -5,10 +5,13 @@ import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dto.ClientDto;
 import org.transportCompanyProject.entity.Client;
+import org.transportCompanyProject.exceptions.AmountShouldBePositiveException;
+import org.transportCompanyProject.interfaces.Accounting;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-public class ClientDao {
+public class ClientDao implements Accounting<Client> {
     public static void addClient(Client client) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -63,5 +66,26 @@ public class ClientDao {
             transaction.commit();
         }
         return clients;
+    }
+
+    @Override
+    public void addToBalance(BigDecimal amount, Client client) throws AmountShouldBePositiveException {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0){
+            throw new AmountShouldBePositiveException("Amount should be a positive BigDecimal value!");
+        }
+        // change the object
+        client.setBalance(client.getBalance().add(amount));
+        // save the change into the db
+        saveOrUpdateClient(client);
+    }
+    @Override
+    public void subtractFromBalance(BigDecimal amount, Client client) throws AmountShouldBePositiveException {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0){
+            throw new AmountShouldBePositiveException("Amount should be a positive BigDecimal value!");
+        }
+        // change the object
+        client.setBalance(client.getBalance().subtract(amount));
+        // save the change into the db
+        saveOrUpdateClient(client);
     }
 }

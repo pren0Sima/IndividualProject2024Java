@@ -1,9 +1,6 @@
 package org.transportCompanyProject.dao;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -12,12 +9,14 @@ import org.transportCompanyProject.dto.CompanyDto;
 import org.transportCompanyProject.dto.EmployeeDto;
 import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
+import org.transportCompanyProject.exceptions.AmountShouldBePositiveException;
+import org.transportCompanyProject.interfaces.Accounting;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
-public class CompanyDao {
+public class CompanyDao implements Accounting<Company> {
     public static void addCompany(Company company) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -184,5 +183,27 @@ public class CompanyDao {
             List<Company> companies = query.getResultList();
             return companies;
         }
+    }
+
+    @Override
+    public void addToBalance(BigDecimal amount, Company company) throws AmountShouldBePositiveException {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0){
+            throw new AmountShouldBePositiveException("Amount should be a positive BigDecimal value!");
+        }
+        // change the object
+        company.setBalance(company.getBalance().add(amount));
+        // save the change into the db
+        saveOrUpdateCompany(company);
+    }
+
+    @Override
+    public void subtractFromBalance(BigDecimal amount, Company company) throws AmountShouldBePositiveException {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0){
+            throw new AmountShouldBePositiveException("Amount should be a positive BigDecimal value!");
+        }
+        // change the object
+        company.setBalance(company.getBalance().subtract(amount));
+        // save the change into the db
+        saveOrUpdateCompany(company);
     }
 }

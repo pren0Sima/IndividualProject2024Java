@@ -246,6 +246,11 @@ public class Main {
 
             // 9. order itineraries by destination:
         ItineraryDao.getOrderedItinerariesByDestination().forEach(System.out::println);
+
+        // IX. Trying out Obligation with GenericDao - works fine. for now.
+        GenericDao<Obligation> obligationGenericDao = new GenericDao<>();
+//        Obligation obligation1 = new Obligation();
+//        obligationGenericDao.saveOrUpdateEntity(obligation1);
     }
 
 }

@@ -1,11 +1,10 @@
 package org.transportCompanyProject.interfaces;
 
-import org.transportCompanyProject.entity.Company;
+import org.transportCompanyProject.exceptions.AmountShouldBePositiveException;
 
 import java.math.BigDecimal;
 
-public interface Accounting {
-    void addToExpenses(BigDecimal amount, Company company);
-    void addToIncome(BigDecimal amount, Company company);
-    BigDecimal calculateProfit(Company company);
+public interface Accounting<T> {
+    void addToBalance(BigDecimal amount, T entity) throws AmountShouldBePositiveException;
+    void subtractFromBalance(BigDecimal amount, T entity) throws AmountShouldBePositiveException;
 }

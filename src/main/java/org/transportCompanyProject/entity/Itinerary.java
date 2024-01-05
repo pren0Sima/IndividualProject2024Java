@@ -49,6 +49,9 @@ public class Itinerary {
     private Client client;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Cargo> cargo;
+
+    @OneToOne(mappedBy = "itinerary", fetch = FetchType.LAZY)
+    private Obligation obligation;
     public Itinerary() {
     }
 
@@ -76,12 +79,12 @@ public class Itinerary {
         this.cost = cost;
     }
 
-    @AssertTrue(message = "Departure date should be before the arrival date")
+    @AssertTrue(message = "Departure date should be before the arrival date!")
     private boolean isDepartureBeforeArrival() {
         return dateOfDeparture == null || dateOfArrival == null || !dateOfDeparture.isAfter(dateOfArrival);
     }
 
-    @AssertTrue(message = "Destination must be different from the starting point")
+    @AssertTrue(message = "Destination must be different from the starting point!")
     private boolean isDestinationDifferentFromStartingPoint() {
         return startingPoint == null || destination == null || !startingPoint.equals(destination);
     }

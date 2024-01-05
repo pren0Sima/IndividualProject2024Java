@@ -19,12 +19,15 @@ public class Client {
     @Pattern(regexp = "^([A-Z].*)", message = "First name should start with a capital letter!")
     private String name;
 
-    @PositiveOrZero
+//    @PositiveOrZero
     @Column(name="balance")
     private BigDecimal balance = BigDecimal.ZERO;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Set<Itinerary> itineraries;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private Set<Obligation> obligations;
 
     public Client() {
     }
