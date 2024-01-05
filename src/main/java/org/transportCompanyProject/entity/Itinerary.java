@@ -1,6 +1,7 @@
 package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.AssertTrue;
 
@@ -34,6 +35,7 @@ public class Itinerary {
 
     // cost without company's overcharge?
     @Column(name = "cost")
+    @Positive
     private BigDecimal cost;
 
     // adding foreign keys

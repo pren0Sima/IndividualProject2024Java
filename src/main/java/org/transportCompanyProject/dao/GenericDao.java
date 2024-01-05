@@ -6,7 +6,7 @@ import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import java.util.List;
 
 // using it for Cargo, Passenger, Goods, Driver, DrivingQualifications, ...
-// for adding, getting by id, saving or updating, deleting and getting all entities
+// for adding, getting by id, saving or updating, deleting and getting all entities (CRUD)
 public class GenericDao<T> {
 
     public void addEntity(T entity) {

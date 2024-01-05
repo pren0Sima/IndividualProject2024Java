@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
-// doesn't create the base class' table, since it's not an entity (MAYBE THAT'S NOT THE WAY TO GO!)
-//@MappedSuperclass
 @Entity
 @Table(name = "cargo")
 // creates the base class' table, bc it's an entity

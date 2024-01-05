@@ -1,7 +1,7 @@
 package org.transportCompanyProject.dto;
 
 import org.transportCompanyProject.entity.Company;
-import org.transportCompanyProject.entity.PositionType;
+import org.transportCompanyProject.Enumerations.PositionType;
 
 public class EmployeeDto {
     private long id;

@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.entity.Employee;
 import org.transportCompanyProject.entity.Itinerary;
 
 import java.util.List;

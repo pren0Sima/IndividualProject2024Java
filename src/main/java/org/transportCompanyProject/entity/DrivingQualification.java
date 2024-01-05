@@ -12,8 +12,7 @@ public class DrivingQualification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long id;
-    @Column(name="type", nullable = false)
-
+    @Column(name="type", nullable = false, unique = true)
     private String type;
 
     public DrivingQualification() {

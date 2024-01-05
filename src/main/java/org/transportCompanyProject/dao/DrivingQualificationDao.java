@@ -3,7 +3,6 @@ package org.transportCompanyProject.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.DrivingQualification;
 
 import java.util.List;
@@ -45,7 +44,8 @@ public class DrivingQualificationDao {
         List<DrivingQualification> drivingQualifications;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            drivingQualifications = session.createQuery("Select dq From DrivingQualification dq", DrivingQualification.class)
+            drivingQualifications = session
+                    .createQuery("Select dq From DrivingQualification dq", DrivingQualification.class)
                     .getResultList();
             transaction.commit();
         }

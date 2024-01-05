@@ -2,6 +2,7 @@ package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.transportCompanyProject.Enumerations.PositionType;
 
 import java.math.BigDecimal;
 

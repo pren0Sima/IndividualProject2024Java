@@ -1,12 +1,15 @@
 package org.transportCompanyProject;
 
+import org.transportCompanyProject.Enumerations.PositionType;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dao.*;
 import org.transportCompanyProject.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Main {
@@ -16,13 +19,9 @@ public class Main {
         SessionFactoryUtil.getSessionFactory().openSession();
 //        // 2. adding a company in the company table:
         Company company1 = new Company(1, "Greco");
-        company1.setOvercharge(BigDecimal.valueOf(20));
         Company company2 = new Company(2,"Orbico");
-        company2.setOvercharge(BigDecimal.valueOf(25));
         Company company3 = new Company(3, "Telenor");
-        company3.setOvercharge(BigDecimal.valueOf(30));
         Company company4 = new Company(4,"Union Ivkoni");
-        company4.setOvercharge(BigDecimal.valueOf(20));
         CompanyDao.saveOrUpdateCompany(company1);
         CompanyDao.saveOrUpdateCompany(company2);
         CompanyDao.saveOrUpdateCompany(company3);
@@ -162,7 +161,7 @@ public class Main {
 
         String[] dqArray = {"A2", "B1", "C", "D", "Flammable", "Top Secret"};
 
-        Set<DrivingQualification> allDrivingQualifications = new HashSet<>();
+        List<DrivingQualification> allDrivingQualifications = new ArrayList<>();
         int i = 1;
         for (String dq : dqArray) {
             allDrivingQualifications.add(new DrivingQualification(i, dq));
@@ -192,12 +191,12 @@ public class Main {
 
         // 3. Check for companies that have an income between 10000 and 50000
             // 3.1. manipulate the data
-        company1.setIncome(BigDecimal.valueOf(40000));
-        company2.setIncome(BigDecimal.valueOf(1000));
-        company3.setIncome(BigDecimal.valueOf(140000));
-        company4.setIncome(BigDecimal.valueOf(30000));
-        nestle1.setIncome(BigDecimal.valueOf(100000));
-        nestle2.setIncome(BigDecimal.valueOf(10000));
+        company1.setBalance(BigDecimal.valueOf(40000));
+        company2.setBalance(BigDecimal.valueOf(1000));
+        company3.setBalance(BigDecimal.valueOf(140000));
+        company4.setBalance(BigDecimal.valueOf(30000));
+        nestle1.setBalance(BigDecimal.valueOf(100000));
+        nestle2.setBalance(BigDecimal.valueOf(10000));
 
         CompanyDao.saveOrUpdateCompany(company1);
         CompanyDao.saveOrUpdateCompany(company2);
@@ -206,13 +205,13 @@ public class Main {
         CompanyDao.saveOrUpdateCompany(nestle1);
         CompanyDao.saveOrUpdateCompany(nestle2);
 
-        CompanyDao.companiesFindByProfitBetween(BigDecimal.valueOf(10000), BigDecimal.valueOf(50000)).forEach(System.out::println);
+        CompanyDao.companiesFindByBalanceBetween(BigDecimal.valueOf(10000), BigDecimal.valueOf(50000)).forEach(System.out::println);
         // 4. Order by income
-        CompanyDao.getOrderedCompaniesByIncome().forEach(System.out::println);
+        CompanyDao.getOrderedCompaniesByBalance().forEach(System.out::println);
         // 5. Order by name
         CompanyDao.getOrderedCompaniesByName().forEach(System.out::println);
         // 6. Order by name and income
-        CompanyDao.findByNameStartingWithAndIncomeGreaterThan("Nestle", BigDecimal.valueOf(9000)).forEach(System.out::println);
+        CompanyDao.findByNameStartingWithAndBalanceGreaterThan("Nestle", BigDecimal.valueOf(9000)).forEach(System.out::println);
         // 7. Queries for Employees:
             // 7.1. create employees
             Employee employee1 = new Employee(3, "Johannes Probs", PositionType.JANITOR, BigDecimal.valueOf(1200));

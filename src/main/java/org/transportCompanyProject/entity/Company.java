@@ -2,7 +2,6 @@ package org.transportCompanyProject.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -20,10 +19,6 @@ public class Company {
     @Pattern(regexp = "^[A-Z].*", message = "Company should start with a capital letter!")
     private String name;
 
-    @Positive
-    @DecimalMin(value = "0.00")
-    private BigDecimal overcharge;
-
     // collection of employees
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private Set<Employee> employees;
@@ -31,10 +26,8 @@ public class Company {
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles;
 
-    @PositiveOrZero
-    private BigDecimal income = BigDecimal.ZERO;
-    @PositiveOrZero
-    private BigDecimal expenses = BigDecimal.ZERO;
+//    @PositiveOrZero
+    private BigDecimal balance = BigDecimal.ZERO;
 
     public Company() {
     }
@@ -48,10 +41,10 @@ public class Company {
         this.name = name;
     }
 
-    public Company(long id, String name, BigDecimal overcharge) {
+    public Company(long id, String name, BigDecimal balance) {
         this.id = id;
         this.name = name;
-        this.overcharge = overcharge;
+        this.balance = balance;
     }
 
     public long getId() {
@@ -70,28 +63,12 @@ public class Company {
         this.name = name;
     }
 
-    public BigDecimal getOvercharge() {
-        return overcharge;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setOvercharge(BigDecimal overcharge) {
-        this.overcharge = overcharge;
-    }
-
-    public BigDecimal getIncome() {
-        return income;
-    }
-
-    public void setIncome(BigDecimal income) {
-        this.income = income;
-    }
-
-    public BigDecimal getExpenses() {
-        return expenses;
-    }
-
-    public void setExpenses(BigDecimal expenses) {
-        this.expenses = expenses;
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public Set<Employee> getEmployees() {

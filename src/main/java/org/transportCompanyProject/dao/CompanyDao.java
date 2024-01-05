@@ -12,13 +12,12 @@ import org.transportCompanyProject.dto.CompanyDto;
 import org.transportCompanyProject.dto.EmployeeDto;
 import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
-import org.transportCompanyProject.interfaces.Accounting;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
-public class CompanyDao implements Accounting {
+public class CompanyDao {
     public static void addCompany(Company company) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -117,13 +116,13 @@ public class CompanyDao implements Accounting {
 
 
     // Criteria queries
-    public static List<Company> companiesFindByProfitBetween(BigDecimal bottom, BigDecimal top) {
+    public static List<Company> companiesFindByBalanceBetween(BigDecimal bottom, BigDecimal top) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
             CriteriaQuery<Company> cr = cb.createQuery(Company.class);
             Root<Company> root = cr.from(Company.class);
 
-            cr.select(root).where(cb.between(root.get("income"), bottom, top));
+            cr.select(root).where(cb.between(root.get("balance"), bottom, top));
 
             Query<Company> query = session.createQuery(cr);
             return query.getResultList();
@@ -146,12 +145,12 @@ public class CompanyDao implements Accounting {
         }
     }
     // sorting by name and income
-    public static List<Company> getOrderedCompaniesByIncome() {
+    public static List<Company> getOrderedCompaniesByBalance() {
         List<Company> companies;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             companies = session.createQuery("Select c From Company c" +
-                            " ORDER BY c.income", Company.class)
+                            " ORDER BY c.balance", Company.class)
                     .getResultList();
             transaction.commit();
         }
@@ -169,14 +168,14 @@ public class CompanyDao implements Accounting {
         }
         return companies;
     }
-    // by name and income
-    public static List<Company> findByNameStartingWithAndIncomeGreaterThan(String name, BigDecimal income) {
+    // by name and balance
+    public static List<Company> findByNameStartingWithAndBalanceGreaterThan(String name, BigDecimal balance) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
             CriteriaQuery<Company> cr = cb.createQuery(Company.class);
             Root<Company> root = cr.from(Company.class);
 
-            Predicate greaterThanIncome = cb.greaterThan(root.get("income"), income);
+            Predicate greaterThanIncome = cb.greaterThan(root.get("balance"), balance);
             Predicate nameStartingWith = cb.like(root.get("name"), name + "%");
 
             cr.select(root).where(cb.and(nameStartingWith, greaterThanIncome));
@@ -185,27 +184,5 @@ public class CompanyDao implements Accounting {
             List<Company> companies = query.getResultList();
             return companies;
         }
-    }
-    // from Accounting interface
-    @Override
-    public void addToExpenses(BigDecimal amount, Company company) {
-        // change the object
-        company.setExpenses(company.getExpenses().add(amount));
-        // save the change into the db
-        saveOrUpdateCompany(company);
-    }
-
-    @Override
-    public void addToIncome(BigDecimal amount, Company company) {
-        // change the object
-        company.setIncome(company.getIncome().add(amount));
-        // save the change into the db
-        saveOrUpdateCompany(company);
-    }
-
-    @Override
-    public BigDecimal calculateProfit(Company company) {
-        // profit = income - expenses
-        return company.getIncome().subtract(company.getExpenses());
     }
 }

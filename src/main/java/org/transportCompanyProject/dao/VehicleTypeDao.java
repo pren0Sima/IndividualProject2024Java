@@ -3,7 +3,6 @@ package org.transportCompanyProject.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.entity.Itinerary;
 import org.transportCompanyProject.entity.VehicleType;
 
 import java.util.List;

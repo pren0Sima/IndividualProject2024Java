@@ -9,9 +9,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dto.EmployeeDto;
-import org.transportCompanyProject.entity.Company;
 import org.transportCompanyProject.entity.Employee;
-import org.transportCompanyProject.entity.PositionType;
+import org.transportCompanyProject.Enumerations.PositionType;
 
 import java.math.BigDecimal;
 import java.util.List;
