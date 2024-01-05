@@ -251,6 +251,18 @@ public class Main {
         GenericDao<Obligation> obligationGenericDao = new GenericDao<>();
 //        Obligation obligation1 = new Obligation();
 //        obligationGenericDao.saveOrUpdateEntity(obligation1);
+
+        // X. TODO: make the whole process:
+        // 1.1. TODO: Add costs for the itineraries
+        // 1.2. TODO: Add clients to the itineraries.
+        // 1.3. TODO: Add drivers to the itineraries.
+        // 1.4. TODO: Add vehicles to the itineraries.
+        // 1.5. TODO: Make a method for executing an itinerary in which:
+                // 1.5.1. TODO: We must make an obligation. If there is no client and no itinerary => exception
+                // 1.5.2. TODO: We must check the funds of the client. In not enough => exception
+                // 1.5.3. TODO: If all is good => 1) take money from client's balance,
+        //                                        2) add it to the company's balance and
+        //                                        3) mark the obligation as paid
     }
 
 }

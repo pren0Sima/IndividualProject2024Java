@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Obligation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/AmountShouldBePositiveException.java" afterDir="false" />
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Made some changes to the Accounting interface. Added Obligation class and created an object in the table using GenericDao.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ClientDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/CompanyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Itinerary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Itinerary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/interfaces/Accounting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/interfaces/Accounting.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704399736886</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Made some changes to the Accounting interface. Added Obligation class and created an object in the table using GenericDao.">
+      <option name="closed" value="true" />
+      <created>1704489852445</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1704489852446</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,7 +278,9 @@
     <MESSAGE value="Made IDs unique." />
     <MESSAGE value="Added criteria functions for employees and tested them in main()." />
     <MESSAGE value="Added criteria functions for itineraries and tested them in main()." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added criteria functions for itineraries and tested them in main()." />
+    <MESSAGE value="Added Obligation class and created an object in the table using GenericDao." />
+    <MESSAGE value="Made some changes to the Accounting interface. Added Obligation class and created an object in the table using GenericDao." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made some changes to the Accounting interface. Added Obligation class and created an object in the table using GenericDao." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
