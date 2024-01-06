@@ -4,14 +4,17 @@ import org.transportCompanyProject.Enumerations.PositionType;
 import org.transportCompanyProject.models.dao.*;
 import org.transportCompanyProject.models.entity.*;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.models.reports.Report;
+import org.transportCompanyProject.models.reports.ReportMaker;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // I. Company.
         // 1. creating the database with all tables(without rows)
         SessionFactoryUtil.getSessionFactory().openSession();
@@ -143,14 +146,15 @@ public class Main {
         // VI. Let's try GenericDao:
         Passenger passenger1 = new Passenger(1, "Simona Vel");
         Goods goods1 = new Goods(2, BigDecimal.valueOf(1.2));
+        GenericDao<Passenger> passengerGenericDao = new GenericDao<>();
+        passengerGenericDao.saveOrUpdateEntity(passenger1);
+        GenericDao<Goods> goodsGenericDao = new GenericDao<>();
+        goodsGenericDao.saveOrUpdateEntity(goods1);
         try {
-            GenericDao<Passenger> passengerGenericDao = new GenericDao<>();
-            passengerGenericDao.saveOrUpdateEntity(passenger1);
-            GenericDao<Goods> goodsGenericDao = new GenericDao<>();
-            goodsGenericDao.saveOrUpdateEntity(goods1);
-
+            System.out.println("Cargo list:\n");
+            CargoDao.getFullCargoList().forEach(System.out::println);
             // deletes the row in cargo as well!
-            passengerGenericDao.deleteEntity(passenger1);
+//            passengerGenericDao.deleteEntity(passenger1);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -258,16 +262,16 @@ public class Main {
 //        Obligation obligation1 = new Obligation();
 //        obligationGenericDao.saveOrUpdateEntity(obligation1);
 
-        // X. TODO: make the whole process:
+        // X. The whole process for executing an itinerary
         // 1.1. Add costs for the itineraries.
         itinerary1.setCost(BigDecimal.valueOf(500));
         itinerary2.setCost(BigDecimal.valueOf(450));
         itinerary3.setCost(BigDecimal.valueOf(200));
-        // 1.2. TODO: Add clients to the itineraries.
+        // 1.2. Add clients to the itineraries.
         itinerary1.setClient(client2);
         itinerary2.setClient(client2);
         itinerary3.setClient(client1);
-        // 1.3. TODO: Add drivers to the itineraries.
+        // 1.3. Add drivers to the itineraries.
         Driver driver2 = new Driver(2,
                 "Denis Vasilev");
         DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(2), driver2);
@@ -275,7 +279,7 @@ public class Main {
         itinerary1.setDriver(driver2);
         itinerary2.setDriver(driver2);
         itinerary3.setDriver(driver1);
-        // 1.4. TODO: Add vehicles to the itineraries.
+        // 1.4. Add vehicles to the itineraries.
         Vehicle truck1 = new Vehicle(2, CompanyDao.getCompanyById(5), vehicleType2);
         Vehicle boat1 = new Vehicle(3, CompanyDao.getCompanyById(2), vehicleType3);
 
@@ -285,6 +289,8 @@ public class Main {
         itinerary1.setVehicle(bus1);
         itinerary2.setVehicle(truck1);
         itinerary3.setVehicle(boat1);
+
+        ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(1), itinerary1);
 
         ItineraryDao.saveOrUpdateItinerary(itinerary1);
         ItineraryDao.saveOrUpdateItinerary(itinerary2);
@@ -313,8 +319,8 @@ public class Main {
         }
 
 
-        // The moment of truth. Let's try out to execute an itinerary. -
-        // TERRIFIC! IT WORKS WHEN A CLIENT DOESN'T HAVE ENOUGH FUNDS BUT A COMPANY DOES!
+        // The moment of truth. Let's try out to execute an itinerary:
+        // When a client doesn't have enough funds but a company does.
 //        try {
 //            ItineraryDao.executeItinerary(itinerary1);
 //        } catch (Exception e) {
@@ -329,6 +335,14 @@ public class Main {
             ItineraryDao.executeItinerary(itinerary1);
         } catch (Exception e) {
             System.err.println(e);
+        }
+
+        // XI. Report making
+        try{
+            Report itineraryReport = new Report("itineraryReport.txt");
+            ReportMaker.writeReportTitle("itineraryReport:\n", itineraryReport);
+        } catch (IOException e) {
+            System.err.println("An error occurred during report creation!");
         }
     }
 }

@@ -11,7 +11,9 @@ import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.models.dto.ItineraryDto;
 import org.transportCompanyProject.exceptions.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ItineraryDao {
     public static void addItinerary(Itinerary itinerary) {
@@ -101,6 +103,24 @@ public class ItineraryDao {
         return itineraries;
     }
 
+    public static void addCargoToItinerary(Cargo cargo, Itinerary itinerary) {
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            if (itinerary == null) {
+                itinerary = new Itinerary();
+            }
+            if (itinerary.getCargo() == null){
+                Set<Cargo> cargos = new HashSet<>();
+                itinerary.setCargo(cargos);
+            }
+            itinerary.getCargo().add(cargo);
+            // if the qualification is not in the database => add it; same for the driver
+            CargoDao.saveOrUpdateCargo(cargo);
+            ItineraryDao.saveOrUpdateItinerary(itinerary);
+
+            transaction.commit();
+        }
+    }
     public static BigDecimal calculatePriceWithOvercharge(BigDecimal basePrice, BigDecimal overcharge) {
         return basePrice.multiply(overcharge.add(BigDecimal.ONE));
     }
