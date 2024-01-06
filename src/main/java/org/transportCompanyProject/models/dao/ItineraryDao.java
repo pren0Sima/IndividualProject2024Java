@@ -117,14 +117,15 @@ public class ItineraryDao {
         else return true;
     }
     public static void executeItinerary(Itinerary itinerary) throws ClientDoesNotExistException,
-            ItineraryLacksVitalInformation, VehicleHasNoCompanyException, AmountShouldBePositiveException, NotEnoughMoneyInCompanyException {
+            ItineraryLacksVitalInformation, VehicleHasNoCompanyException, AmountShouldBePositiveException,
+            NotEnoughMoneyInCompanyException {
         // 1. Make an obligation after validating client and itinerary
         Client client = ClientDao.getClientById(itinerary.getClient().getId());
         Vehicle vehicle = VehicleDao.getVehicleById(itinerary.getVehicle().getId());
         if (ClientDao.validateClient(client)
                 && validateItinerary(itinerary)
                 && VehicleDao.validateVehicle(vehicle)) {
-            Obligation obligation = new Obligation(client, itinerary);
+            Obligation obligation = new Obligation(itinerary.getId(), client, itinerary);
             ObligationDao.saveOrUpdateObligation(obligation);
             // 2. Check if client can pay full amount:
             // 2.1. calculate price

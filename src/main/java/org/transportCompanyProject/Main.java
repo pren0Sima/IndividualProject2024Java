@@ -313,7 +313,18 @@ public class Main {
         }
 
 
-        // The moment of truth. Let's try out to execute an itinerary. - TERRIBLE. IT WORKS WHEN IT SHOULDN'T.
+        // The moment of truth. Let's try out to execute an itinerary. -
+        // TERRIFIC! IT WORKS WHEN A CLIENT DOESN'T HAVE ENOUGH FUNDS BUT A COMPANY DOES!
+//        try {
+//            ItineraryDao.executeItinerary(itinerary1);
+//        } catch (Exception e) {
+//            System.err.println(e);
+//        }
+        // now let's try it when the client has enough money.
+        Client clientCopy = ClientDao.getClientById(itinerary1.getClient().getId());
+        clientCopy.setBalance(BigDecimal.valueOf(2000));
+        ClientDao.saveOrUpdateClient(clientCopy);
+
         try {
             ItineraryDao.executeItinerary(itinerary1);
         } catch (Exception e) {
