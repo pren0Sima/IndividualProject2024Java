@@ -1,4 +1,4 @@
-package org.transportCompanyProject.dao;
+package org.transportCompanyProject.models.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

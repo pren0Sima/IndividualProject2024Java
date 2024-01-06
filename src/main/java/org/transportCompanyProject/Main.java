@@ -1,10 +1,9 @@
 package org.transportCompanyProject;
 
 import org.transportCompanyProject.Enumerations.PositionType;
+import org.transportCompanyProject.models.dao.*;
+import org.transportCompanyProject.models.entity.*;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.dao.*;
-import org.transportCompanyProject.entity.*;
-import org.transportCompanyProject.exceptions.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,9 +17,9 @@ public class Main {
         SessionFactoryUtil.getSessionFactory().openSession();
 //        // 2. adding a company in the company table:
         Company company1 = new Company(1, "Greco");
-        Company company2 = new Company(2,"Orbico");
+        Company company2 = new Company(2, "Orbico");
         Company company3 = new Company(3, "Telenor");
-        Company company4 = new Company(4,"Union Ivkoni");
+        Company company4 = new Company(4, "Union Ivkoni");
         CompanyDao.saveOrUpdateCompany(company1);
         CompanyDao.saveOrUpdateCompany(company2);
         CompanyDao.saveOrUpdateCompany(company3);
@@ -94,7 +93,7 @@ public class Main {
         // III. Client
         // 1. add clients
         Client client1 = new Client(1, "Samantha");
-        Client client2 = new Client(2,"Lidl");
+        Client client2 = new Client(2, "Lidl");
         ClientDao.saveOrUpdateClient(client1);
         ClientDao.saveOrUpdateClient(client2);
 //        ClientDao.deleteClient(ClientDao.getClientById(3));
@@ -105,7 +104,7 @@ public class Main {
         Itinerary itinerary1 = new Itinerary(1, "Sofia, Obikolna street, 21",
                 "Gabrovo, Stoletov street, 15", LocalDate.of(2024, 05, 21),
                 LocalDate.of(2024, 05, 22));
-        Itinerary itinerary2 = new Itinerary(2,"Varna, Pirin street 26",
+        Itinerary itinerary2 = new Itinerary(2, "Varna, Pirin street 26",
                 "Plovdiv, Kukush street 3", LocalDate.of(2024, 06, 12),
                 LocalDate.of(2024, 06, 12));
 
@@ -143,7 +142,7 @@ public class Main {
 
         // VI. Let's try GenericDao:
         Passenger passenger1 = new Passenger(1, "Simona Vel");
-        Goods goods1 = new Goods(2,BigDecimal.valueOf(1.2));
+        Goods goods1 = new Goods(2, BigDecimal.valueOf(1.2));
         try {
             GenericDao<Passenger> passengerGenericDao = new GenericDao<>();
             passengerGenericDao.saveOrUpdateEntity(passenger1);
@@ -172,7 +171,7 @@ public class Main {
 
         allDrivingQualifications.forEach(System.out::println);
 
-        Driver driver1 = new Driver(1,"Mysterious private driver");
+        Driver driver1 = new Driver(1, "Mysterious private driver");
         // the driver must have a name!
         DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(2), driver1);
         DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(6), driver1);
@@ -180,8 +179,8 @@ public class Main {
 
         // VIII. criteria queries
         // 1. Add companies in db
-        Company nestle1 = new Company(5,"Nestle 1");
-        Company nestle2 = new Company(6,"Nestle 2");
+        Company nestle1 = new Company(5, "Nestle 1");
+        Company nestle2 = new Company(6, "Nestle 2");
         CompanyDao.saveOrUpdateCompany(nestle1);
         CompanyDao.saveOrUpdateCompany(nestle2);
 
@@ -189,15 +188,15 @@ public class Main {
         CompanyDao.companiesFindByNameStartingWith("Nestle").forEach(System.out::println);
 
         // 3. Check for companies that have an income between 10000 and 50000
-            // 3.1. manipulate the data
-                // 3.1.1. set balance
+        // 3.1. manipulate the data
+        // 3.1.1. set balance
         company1.setBalance(BigDecimal.valueOf(40000));
         company2.setBalance(BigDecimal.valueOf(1000));
         company3.setBalance(BigDecimal.valueOf(140000));
         company4.setBalance(BigDecimal.valueOf(30000));
         nestle1.setBalance(BigDecimal.valueOf(100000));
         nestle2.setBalance(BigDecimal.valueOf(10000));
-                // 3.1.2. set overcharge
+        // 3.1.2. set overcharge
         company1.setOvercharge(BigDecimal.valueOf(0.3));
         company2.setOvercharge(BigDecimal.valueOf(0.4));
         company3.setOvercharge(BigDecimal.valueOf(0.45));
@@ -220,29 +219,29 @@ public class Main {
         // 6. Order by name and income
         CompanyDao.findByNameStartingWithAndBalanceGreaterThan("Nestle", BigDecimal.valueOf(9000)).forEach(System.out::println);
         // 7. Queries for Employees:
-            // 7.1. create employees
-            Employee employee1 = new Employee(3, "Johannes Probs", PositionType.JANITOR, BigDecimal.valueOf(1200));
-            Employee employee2 = new Employee(4, "Benjamin Lao", PositionType.ADMINISTRATOR, BigDecimal.valueOf(3200));
-            EmployeeDao.saveOrUpdateEmployee(employee1);
-            EmployeeDao.saveOrUpdateEmployee(employee2);
-            // 7.2. find by salary
+        // 7.1. create employees
+        Employee employee1 = new Employee(3, "Johannes Probs", PositionType.JANITOR, BigDecimal.valueOf(1200));
+        Employee employee2 = new Employee(4, "Benjamin Lao", PositionType.ADMINISTRATOR, BigDecimal.valueOf(3200));
+        EmployeeDao.saveOrUpdateEmployee(employee1);
+        EmployeeDao.saveOrUpdateEmployee(employee2);
+        // 7.2. find by salary
         EmployeeDao.employeesFindBySalaryBetween(BigDecimal.valueOf(3000), BigDecimal.valueOf(4000)).forEach(System.out::println);
-            // 7.3. find by name start - not wanted
+        // 7.3. find by name start - not wanted
         EmployeeDao.employeesFindByNameStartingWith("Johan").forEach(System.out::println);
-            // 7.4. order employees by salary(ACS):
+        // 7.4. order employees by salary(ACS):
         EmployeeDao.getOrderedEmployeesBySalaryASC().forEach(System.out::println);
-            // 7.5. order employees by salary(DESC):
+        // 7.5. order employees by salary(DESC):
         EmployeeDao.getOrderedEmployeesBySalaryDESC().forEach(System.out::println);
-            // 7.6. order employees by position(ASC):
+        // 7.6. order employees by position(ASC):
         EmployeeDao.getOrderedEmployeesByPositionASC().forEach(System.out::println);
-            // 7.7. order employees by position(ASC) and salary(DESC):
+        // 7.7. order employees by position(ASC) and salary(DESC):
         EmployeeDao.getOrderedEmployeesByASCPositionANDDESCSalary().forEach(System.out::println);
-            // 7.8. find employees that have a certain positionType:
+        // 7.8. find employees that have a certain positionType:
         EmployeeDao.employeesFindByPosition(PositionType.ADMINISTRATOR).forEach(System.out::println);
 
 
-            // 8. find itineraries with the same destination:
-        Itinerary itinerary3 = new Itinerary(3,"Sofia, Cherni Vrah boulevard 17",
+        // 8. find itineraries with the same destination:
+        Itinerary itinerary3 = new Itinerary(3, "Sofia, Cherni Vrah boulevard 17",
                 "Plovdiv, Kukush street 12", LocalDate.of(2024, 07, 21),
                 LocalDate.of(2024, 07, 23));
         ItineraryDao.saveOrUpdateItinerary(itinerary3);
@@ -251,7 +250,7 @@ public class Main {
         // 8.2. none to Shumen:
         ItineraryDao.itinerariesFindByDestination("Shumen").forEach(System.out::println);
 
-            // 9. order itineraries by destination:
+        // 9. order itineraries by destination:
         ItineraryDao.getOrderedItinerariesByDestination().forEach(System.out::println);
 
         // IX. Trying out Obligation with GenericDao - works fine. for now.
@@ -314,48 +313,11 @@ public class Main {
         }
 
 
-        // The moment of truth. Let's try out to execute an itinerary.
+        // The moment of truth. Let's try out to execute an itinerary. - TERRIBLE. IT WORKS WHEN IT SHOULDN'T.
         try {
             ItineraryDao.executeItinerary(itinerary1);
         } catch (Exception e) {
             System.err.println(e);
         }
-
-
-        // see all Itinerary details - works fine.
-//        ItineraryDao.getItinerariesDTO().forEach(System.out::println);
-//        List<ItineraryDto> itinerariesList = ItineraryDao.getItinerariesDTO();
-
-        // 1.5. TODO: Make a void method for executing an itinerary in which:
-                                    // ItineraryDao.executeItinerary(itinerary){try catch for the type of exception thrown
-                // 1.5.1. TODO: We must make an obligation.
-        //                       $$$    If there is no client and no itinerary => exception
-                                        // validateClient() and validateItinerary()
-                                        // Obligation obligation = new Obligation(itinerary)
-                                        // ObligationDao.saveOrUpdate(obligation)
-                // 1.5.2. TODO: We must check if the vehicle is connected to a company. If not => exception
-        //                       $$$
-        //                                   // VehicleDao.validateVehicle(itinerary.getVehicle()){
-        //                                      if (vehicle.getCompany == null)
-        //                                      => throw new VehicleHasNoCompanyException() }
-                                                                                        // If yes => Company
-                // 1.5.3. TODO: We must check the funds of the client. In not enough => don't change the paid to true at the end
-                           //    $$$    // priceWithOvercharge = BigDecimal calculatePriceWithOvercharge(basePrice, overcharge)
-                                        // bool ClientDao.canAClientPay(priceWithOvercharge, itinerary.getClient()) {
-        //                                      if (Client.getBalance.compareTo(priceWithOvercharge) < 0)
-        //                                      => return false;
-                        //                      else return true;
-                // 1.5.4. TODO: If all is good: if (validateClientsFunds == true)=>
-        //                                      1) TODO: take money from client's balance,
-                                        // makePayment(client, company, amount, obligation) {
-        //                                      ClientDao.subtractFromBalance(itinerary.getCost().multiply(company.getOvercharge()), itinerary.getClient());
-        //                                        2) TODO: add it to the company's balance and
-                                        //        CompanyDao.addToBalance(itinerary.getCost(), itinerary.getClient())
-        //                                        3) TODO: mark the obligation as paid
-                                        //        obligation.setPaid(true); }
-    }          // 1.5.5. TODO: If not -> the company pays and the obligation stays
-                                        // TODO: bool CompanyDao.validateCompanysFunds(amount, company)
-                                                  //  if true => CompanyDao.subtractFromBalance(itinerary.getCost(), company)
-                                                  // else => throw new NotEnoughMoneyInCompanyBalanceException()
-
+    }
 }

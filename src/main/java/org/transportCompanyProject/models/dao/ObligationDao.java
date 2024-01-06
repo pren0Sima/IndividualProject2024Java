@@ -1,10 +1,9 @@
-package org.transportCompanyProject.dao;
+package org.transportCompanyProject.models.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.entity.Itinerary;
-import org.transportCompanyProject.entity.Obligation;
+import org.transportCompanyProject.models.entity.Obligation;
 
 import java.util.List;
 

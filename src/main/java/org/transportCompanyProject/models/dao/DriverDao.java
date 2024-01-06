@@ -1,10 +1,10 @@
-package org.transportCompanyProject.dao;
+package org.transportCompanyProject.models.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.entity.Driver;
-import org.transportCompanyProject.entity.DrivingQualification;
+import org.transportCompanyProject.models.entity.Driver;
+import org.transportCompanyProject.models.entity.DrivingQualification;
 
 import java.util.HashSet;
 import java.util.List;

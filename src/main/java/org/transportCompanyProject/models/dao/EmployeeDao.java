@@ -1,4 +1,4 @@
-package org.transportCompanyProject.dao;
+package org.transportCompanyProject.models.dao;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -8,8 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.dto.EmployeeDto;
-import org.transportCompanyProject.entity.Employee;
+import org.transportCompanyProject.models.dto.EmployeeDto;
+import org.transportCompanyProject.models.entity.Employee;
 import org.transportCompanyProject.Enumerations.PositionType;
 
 import java.math.BigDecimal;
@@ -66,7 +66,7 @@ public class EmployeeDao {
             Transaction transaction = session.beginTransaction();
             employees = session
                     .createQuery(
-                            "Select new org.transportCompanyProject.dto.EmployeeDto(e.id, " +
+                            "Select new org.transportCompanyProject.models.dto.EmployeeDto(e.id, " +
                                     "e.name, e.positionType, e.company)" +
                             " From Employee e", EmployeeDto.class)
                     .getResultList();

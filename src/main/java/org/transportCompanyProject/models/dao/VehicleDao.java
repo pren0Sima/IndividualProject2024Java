@@ -1,10 +1,10 @@
-package org.transportCompanyProject.dao;
+package org.transportCompanyProject.models.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.dto.VehicleDto;
-import org.transportCompanyProject.entity.Vehicle;
+import org.transportCompanyProject.models.dto.VehicleDto;
+import org.transportCompanyProject.models.entity.Vehicle;
 import org.transportCompanyProject.exceptions.VehicleHasNoCompanyException;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class VehicleDao {
         Vehicle vehicle;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            vehicle = session.get(org.transportCompanyProject.entity.Vehicle.class, id);
+            vehicle = session.get(Vehicle.class, id);
             transaction.commit();
         }
         return vehicle;
@@ -39,7 +39,7 @@ public class VehicleDao {
         List<Vehicle> vehicles;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            vehicles = session.createQuery("Select v From Vehicle v", org.transportCompanyProject.entity.Vehicle.class)
+            vehicles = session.createQuery("Select v From Vehicle v", Vehicle.class)
                     .getResultList();
             transaction.commit();
         }
@@ -50,7 +50,7 @@ public class VehicleDao {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             vehicles = session
-                    .createQuery("select new org.transportCompanyProject.dto.VehicleDto(v.id, v.company, v.vehicleType) " +
+                    .createQuery("select new org.transportCompanyProject.models.dto.VehicleDto(v.id, v.company, v.vehicleType) " +
                             "from Vehicle v", VehicleDto.class)
                     .getResultList();
             transaction.commit();

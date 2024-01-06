@@ -1,4 +1,4 @@
-package org.transportCompanyProject.dao;
+package org.transportCompanyProject.models.dao;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -6,12 +6,10 @@ import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.transportCompanyProject.models.entity.*;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.dto.ItineraryDto;
-import org.transportCompanyProject.entity.*;
+import org.transportCompanyProject.models.dto.ItineraryDto;
 import org.transportCompanyProject.exceptions.*;
-import org.transportCompanyProject.interfaces.Accounting;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -66,7 +64,7 @@ public class ItineraryDao {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             itineraryDtos = session
-                    .createQuery("select new org.transportCompanyProject.dto.ItineraryDto(i.id, i.startingPoint, i.destination," +
+                    .createQuery("select new org.transportCompanyProject.models.dto.ItineraryDto(i.id, i.startingPoint, i.destination," +
                             " i.dateOfDeparture, i.dateOfArrival, i.cost, " +
                             " i.vehicle, i.driver, i.client) " +
                             "from Itinerary i", ItineraryDto.class)
@@ -137,22 +135,17 @@ public class ItineraryDao {
             boolean clientPays = ClientDao.canAClientPay(priceToPay, client);
 
             Company company = CompanyDao.getCompanyById(vehicle.getCompany().getId());
-            Accounting companyAccounting = null;
             if (clientPays) {
-                Accounting clientAccounting = null;
-                clientAccounting.subtractFromBalance(priceToPay, client);
+                ClientDao.subtractFromBalance(priceToPay, client);
                 // pay company
-                companyAccounting.addToBalance(priceToPay, company);
+                CompanyDao.addToBalance(priceToPay, company);
                 obligation.setPaid(true);
                 // update base:
-                ClientDao.saveOrUpdateClient(client);
                 ObligationDao.saveOrUpdateObligation(obligation);
-                CompanyDao.saveOrUpdateCompany(company);
             } else {
                 if (CompanyDao.canACompanyPay(cost, company)){
                     // company pays:
-                    companyAccounting.subtractFromBalance(cost, company);
-                    CompanyDao.saveOrUpdateCompany(company);
+                    CompanyDao.subtractFromBalance(cost, company);
                 }
                 else {
                     throw new NotEnoughMoneyInCompanyException("Company cannot afford this itinerary!");

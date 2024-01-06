@@ -1,22 +1,21 @@
-package org.transportCompanyProject.dao;
+package org.transportCompanyProject.models.dao;
 
 import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
-import org.transportCompanyProject.dto.CompanyDto;
-import org.transportCompanyProject.dto.EmployeeDto;
-import org.transportCompanyProject.entity.Company;
-import org.transportCompanyProject.entity.Employee;
+import org.transportCompanyProject.models.dto.CompanyDto;
+import org.transportCompanyProject.models.dto.EmployeeDto;
+import org.transportCompanyProject.models.entity.Company;
+import org.transportCompanyProject.models.entity.Employee;
 import org.transportCompanyProject.exceptions.AmountShouldBePositiveException;
-import org.transportCompanyProject.interfaces.Accounting;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
-public class CompanyDao implements Accounting<Company> {
+public class CompanyDao {
     public static void addCompany(Company company) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -57,7 +56,7 @@ public class CompanyDao implements Accounting<Company> {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             companies = session
-                    .createQuery("select new org.transportCompanyProject.dto.CompanyDto(c.id, c.name) " +
+                    .createQuery("select new org.transportCompanyProject.models.dto.CompanyDto(c.id, c.name) " +
                             "from Company c", CompanyDto.class)
                     .getResultList();
             transaction.commit();
@@ -102,7 +101,7 @@ public class CompanyDao implements Accounting<Company> {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
             employees = session.createQuery(
-                    "select new org.transportCompanyProject.dto.EmployeeDto(e.id, e.name, e.positionType, e.company) from Employee e" +
+                    "select new org.transportCompanyProject.models.dto.EmployeeDto(e.id, e.name, e.positionType, e.company) from Employee e" +
                             " join e.company c" +
                             " where c.id = :id",
                     EmployeeDto.class)
@@ -190,8 +189,7 @@ public class CompanyDao implements Accounting<Company> {
         else
             return true;
     }
-    @Override
-    public void addToBalance(BigDecimal amount, Company company) throws AmountShouldBePositiveException {
+    public static void addToBalance(BigDecimal amount, Company company) throws AmountShouldBePositiveException {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new AmountShouldBePositiveException("Amount should be a positive BigDecimal value!");
         }
@@ -201,8 +199,7 @@ public class CompanyDao implements Accounting<Company> {
         saveOrUpdateCompany(company);
     }
 
-    @Override
-    public void subtractFromBalance(BigDecimal amount, Company company) throws AmountShouldBePositiveException {
+    public static void subtractFromBalance(BigDecimal amount, Company company) throws AmountShouldBePositiveException {
         if (amount.compareTo(BigDecimal.ZERO) <= 0){
             throw new AmountShouldBePositiveException("Amount should be a positive BigDecimal value!");
         }

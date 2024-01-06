@@ -1,4 +1,4 @@
-package org.transportCompanyProject.entity;
+package org.transportCompanyProject.models.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;

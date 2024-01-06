@@ -1,7 +1,7 @@
-package org.transportCompanyProject.dto;
+package org.transportCompanyProject.models.dto;
 
-import org.transportCompanyProject.entity.Company;
-import org.transportCompanyProject.entity.VehicleType;
+import org.transportCompanyProject.models.entity.Company;
+import org.transportCompanyProject.models.entity.VehicleType;
 
 public class VehicleDto {
     private long id;

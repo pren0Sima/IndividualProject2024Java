@@ -1,4 +1,4 @@
-package org.transportCompanyProject.dto;
+package org.transportCompanyProject.models.dto;
 
 public class CompanyDto {
     private long id;
