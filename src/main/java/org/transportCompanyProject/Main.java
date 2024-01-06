@@ -3,8 +3,8 @@ package org.transportCompanyProject;
 import org.transportCompanyProject.Enumerations.PositionType;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dao.*;
-import org.transportCompanyProject.dto.ItineraryDto;
 import org.transportCompanyProject.entity.*;
+import org.transportCompanyProject.exceptions.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -295,25 +295,54 @@ public class Main {
         // see all vehicles through dto - works fine.
         VehicleDao.getVehiclesDTO().forEach(System.out::println);
 
+        // trying out functions for executeItinerary one:
+        try {
+            System.out.println("Validating bus1: " + VehicleDao.validateVehicle(bus1));
+            // calculations - correct.
+            System.out.println("Base price: " + itinerary1.getCost());
+            BigDecimal priceToPay = ItineraryDao.calculatePriceWithOvercharge(itinerary1.getCost(),
+                    ItineraryDao.getCompanyOverchargeThroughItinerary(itinerary1));
+            System.out.println("Calculating price for client: " + priceToPay);
+//            Vehicle vehicle = new Vehicle();
+//            System.out.println("Validating empty vehicle's company: " + VehicleDao.validateVehicle(vehicle));
+            System.out.println("Validation client1 through bd: " + ClientDao.validateClient(ClientDao.getClientById(1)));
+            System.out.println("Validation for itinerary: " + ItineraryDao.validateItinerary(itinerary1));
+
+            System.out.println("Check if a client can pay for itinerary: " + ClientDao.canAClientPay(priceToPay, client1));
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+
+        // The moment of truth. Let's try out to execute an itinerary.
+        try {
+            ItineraryDao.executeItinerary(itinerary1);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+
         // see all Itinerary details - works fine.
 //        ItineraryDao.getItinerariesDTO().forEach(System.out::println);
-        List<ItineraryDto> itinerariesList = ItineraryDao.getItinerariesDTO();
+//        List<ItineraryDto> itinerariesList = ItineraryDao.getItinerariesDTO();
 
         // 1.5. TODO: Make a void method for executing an itinerary in which:
                                     // ItineraryDao.executeItinerary(itinerary){try catch for the type of exception thrown
-                // 1.5.1. TODO: We must make an obligation. If there is no client and no itinerary => exception
+                // 1.5.1. TODO: We must make an obligation.
+        //                       $$$    If there is no client and no itinerary => exception
+                                        // validateClient() and validateItinerary()
                                         // Obligation obligation = new Obligation(itinerary)
-                                        // ObligationDao.validateObligation(obligation) {
-        //                                      if (itinerary == null || itinerary.getClient() == null)
-        //                                      => throw new mustAddClientOrItineraryException()}
-                // 1.5.2. sTODO: We must check if the vehicle is connected to a company. If not => exception
-                                        // VehicleDao.validateVehicle(itinerary.getVehicle()){
+                                        // ObligationDao.saveOrUpdate(obligation)
+                // 1.5.2. TODO: We must check if the vehicle is connected to a company. If not => exception
+        //                       $$$
+        //                                   // VehicleDao.validateVehicle(itinerary.getVehicle()){
         //                                      if (vehicle.getCompany == null)
         //                                      => throw new VehicleHasNoCompanyException() }
                                                                                         // If yes => Company
                 // 1.5.3. TODO: We must check the funds of the client. In not enough => don't change the paid to true at the end
-                                        // bool ClientDao.validateClientsFunds(itinerary.getClient()) {
-        //                                      if (Client.getBalance.compareTo(itinerary.getCost().multiply(company.getOvercharge().add(BigDecimal.ONE))) < 0)
+                           //    $$$    // priceWithOvercharge = BigDecimal calculatePriceWithOvercharge(basePrice, overcharge)
+                                        // bool ClientDao.canAClientPay(priceWithOvercharge, itinerary.getClient()) {
+        //                                      if (Client.getBalance.compareTo(priceWithOvercharge) < 0)
         //                                      => return false;
                         //                      else return true;
                 // 1.5.4. TODO: If all is good: if (validateClientsFunds == true)=>

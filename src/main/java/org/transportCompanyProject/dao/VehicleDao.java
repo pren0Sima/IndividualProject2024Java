@@ -4,11 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dto.VehicleDto;
+import org.transportCompanyProject.entity.Vehicle;
+import org.transportCompanyProject.exceptions.VehicleHasNoCompanyException;
 
 import java.util.List;
 
 public class VehicleDao {
-    public static void addVehicle(org.transportCompanyProject.entity.Vehicle vehicle) {
+    public static void addVehicle(Vehicle vehicle) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be save(), but it's deprecated
@@ -16,16 +18,16 @@ public class VehicleDao {
             transaction.commit();
         }
     }
-    public static org.transportCompanyProject.entity.Vehicle getVehicleById(long id) {
-        org.transportCompanyProject.entity.Vehicle company;
+    public static Vehicle getVehicleById(long id) {
+        Vehicle vehicle;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            company = session.get(org.transportCompanyProject.entity.Vehicle.class, id);
+            vehicle = session.get(org.transportCompanyProject.entity.Vehicle.class, id);
             transaction.commit();
         }
-        return company;
+        return vehicle;
     }
-    public static void saveOrUpdateVehicle(org.transportCompanyProject.entity.Vehicle vehicle) {
+    public static void saveOrUpdateVehicle(Vehicle vehicle) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             // it used to be saveOrUpdate(), but it's deprecated
@@ -33,8 +35,8 @@ public class VehicleDao {
             transaction.commit();
         }
     }
-    public static List<org.transportCompanyProject.entity.Vehicle> getVehicles() {
-        List<org.transportCompanyProject.entity.Vehicle> vehicles;
+    public static List<Vehicle> getVehicles() {
+        List<Vehicle> vehicles;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             vehicles = session.createQuery("Select v From Vehicle v", org.transportCompanyProject.entity.Vehicle.class)
@@ -55,12 +57,17 @@ public class VehicleDao {
         }
         return vehicles;
     }
-    public static void deleteVehicle(org.transportCompanyProject.entity.Vehicle vehicle){
+    public static void deleteVehicle(Vehicle vehicle){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
             // it used to be delete(), but it's deprecated
             session.remove(vehicle);
             transaction.commit();
         }
+    }
+
+    public static boolean validateVehicle(Vehicle vehicle) throws VehicleHasNoCompanyException {
+        if (vehicle.getCompany() == null) throw new VehicleHasNoCompanyException("Assign a company to the vehicle!");
+        else return true;
     }
 }

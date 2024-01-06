@@ -8,8 +8,11 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dto.ItineraryDto;
-import org.transportCompanyProject.entity.Itinerary;
+import org.transportCompanyProject.entity.*;
+import org.transportCompanyProject.exceptions.*;
+import org.transportCompanyProject.interfaces.Accounting;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ItineraryDao {
@@ -51,7 +54,7 @@ public class ItineraryDao {
         List<Itinerary> itineraries;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            itineraries = session.createQuery("Select c From Itinerary c", Itinerary.class)
+            itineraries = session.createQuery("Select i From Itinerary i", Itinerary.class)
                     .getResultList();
             transaction.commit();
         }
@@ -98,5 +101,63 @@ public class ItineraryDao {
             transaction.commit();
         }
         return itineraries;
+    }
+
+    public static BigDecimal calculatePriceWithOvercharge(BigDecimal basePrice, BigDecimal overcharge) {
+        return basePrice.multiply(overcharge.add(BigDecimal.ONE));
+    }
+
+    public static BigDecimal getCompanyOverchargeThroughItinerary(Itinerary itinerary) {
+        return CompanyDao.getCompanyById(itinerary.getVehicle().getCompany().getId()).getOvercharge();
+    }
+
+    public static boolean validateItinerary(Itinerary itinerary) throws ItineraryLacksVitalInformation {
+        if (itinerary == null || itinerary.getCost() == null
+                || itinerary.getClient() == null
+                || itinerary.getVehicle() == null)
+            throw new ItineraryLacksVitalInformation("Itinerary does not exist or lacks cost, client and/or vehicle!");
+        else return true;
+    }
+    public static void executeItinerary(Itinerary itinerary) throws ClientDoesNotExistException,
+            ItineraryLacksVitalInformation, VehicleHasNoCompanyException, AmountShouldBePositiveException, NotEnoughMoneyInCompanyException {
+        // 1. Make an obligation after validating client and itinerary
+        Client client = ClientDao.getClientById(itinerary.getClient().getId());
+        Vehicle vehicle = VehicleDao.getVehicleById(itinerary.getVehicle().getId());
+        if (ClientDao.validateClient(client)
+                && validateItinerary(itinerary)
+                && VehicleDao.validateVehicle(vehicle)) {
+            Obligation obligation = new Obligation(client, itinerary);
+            ObligationDao.saveOrUpdateObligation(obligation);
+            // 2. Check if client can pay full amount:
+            // 2.1. calculate price
+            BigDecimal cost = itinerary.getCost();
+            BigDecimal priceToPay = ItineraryDao.calculatePriceWithOvercharge
+                    (cost, getCompanyOverchargeThroughItinerary(itinerary));
+            // if client can pay -> they pay and their obligation is paid.
+            boolean clientPays = ClientDao.canAClientPay(priceToPay, client);
+
+            Company company = CompanyDao.getCompanyById(vehicle.getCompany().getId());
+            Accounting companyAccounting = null;
+            if (clientPays) {
+                Accounting clientAccounting = null;
+                clientAccounting.subtractFromBalance(priceToPay, client);
+                // pay company
+                companyAccounting.addToBalance(priceToPay, company);
+                obligation.setPaid(true);
+                // update base:
+                ClientDao.saveOrUpdateClient(client);
+                ObligationDao.saveOrUpdateObligation(obligation);
+                CompanyDao.saveOrUpdateCompany(company);
+            } else {
+                if (CompanyDao.canACompanyPay(cost, company)){
+                    // company pays:
+                    companyAccounting.subtractFromBalance(cost, company);
+                    CompanyDao.saveOrUpdateCompany(company);
+                }
+                else {
+                    throw new NotEnoughMoneyInCompanyException("Company cannot afford this itinerary!");
+                }
+            }
+        }
     }
 }

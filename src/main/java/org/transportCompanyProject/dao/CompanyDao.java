@@ -184,10 +184,15 @@ public class CompanyDao implements Accounting<Company> {
             return companies;
         }
     }
-
+    public static boolean canACompanyPay(BigDecimal price, Company company) {
+        if (company.getBalance().compareTo(price) < 0)
+            return false;
+        else
+            return true;
+    }
     @Override
     public void addToBalance(BigDecimal amount, Company company) throws AmountShouldBePositiveException {
-        if (amount.compareTo(BigDecimal.ZERO) <= 0){
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new AmountShouldBePositiveException("Amount should be a positive BigDecimal value!");
         }
         // change the object
