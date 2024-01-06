@@ -176,7 +176,8 @@ public class Itinerary {
                 ", startingPoint='" + startingPoint + '\'' +
                 ", destination='" + destination + '\'' +
                 ", dateOfDeparture=" + dateOfDeparture +
-                ", dateOfArrive=" + dateOfArrival +
+                ", dateOfArrival=" + dateOfArrival +
+                ", cost=" + cost +
                 '}';
     }
 }

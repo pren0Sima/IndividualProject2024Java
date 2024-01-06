@@ -24,6 +24,12 @@ public class Vehicle {
     public Vehicle() {
     }
 
+    public Vehicle(long id, Company company, VehicleType vehicleType) {
+        this.id = id;
+        this.company = company;
+        this.vehicleType = vehicleType;
+    }
+
     public long getId() {
         return id;
     }

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.dto.ItineraryDto;
 import org.transportCompanyProject.entity.Itinerary;
 
 import java.util.List;
@@ -55,6 +56,21 @@ public class ItineraryDao {
             transaction.commit();
         }
         return itineraries;
+    }
+    // DTO
+    public static List<ItineraryDto> getItinerariesDTO() {
+        List<ItineraryDto> itineraryDtos;
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            itineraryDtos = session
+                    .createQuery("select new org.transportCompanyProject.dto.ItineraryDto(i.id, i.startingPoint, i.destination," +
+                            " i.dateOfDeparture, i.dateOfArrival, i.cost, " +
+                            " i.vehicle, i.driver, i.client) " +
+                            "from Itinerary i", ItineraryDto.class)
+                    .getResultList();
+            transaction.commit();
+        }
+        return itineraryDtos;
     }
 
     // criteria queries:

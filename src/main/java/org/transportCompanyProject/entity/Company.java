@@ -26,7 +26,7 @@ public class Company {
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private Set<Vehicle> vehicles;
 
-//    @PositiveOrZero
+    @PositiveOrZero
     private BigDecimal balance = BigDecimal.ZERO;
 
     public Company() {

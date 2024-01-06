@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Made some changes to the Accounting interface. Added Obligation class and created an object in the table using GenericDao.">
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added some TODO's. Quite cool.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dto/ItineraryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dto/VehicleDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ClientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ItineraryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/ItineraryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/VehicleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dao/VehicleDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/dto/VehicleTypeDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Itinerary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Itinerary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Obligation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Obligation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/entity/Vehicle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,21 +72,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Gradle.Build IndividualProjectJava.executor": "Run",
-    "Gradle.IndividualProjectJava [:Main.main()].executor": "Run",
-    "OverrideImplement.generate.javadoc": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/HP/Desktop/University/3rd year/Приложно програмиране на Java/Individual project/code/IndividualProjectJava",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build IndividualProjectJava.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.IndividualProjectJava [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/University/3rd year/Приложно програмиране на Java/Individual project/code/IndividualProjectJava&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.transportCompanyProject.exceptions" />
@@ -246,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704489852446</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added some TODO's. Quite cool.">
+      <option name="closed" value="true" />
+      <created>1704490732711</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1704490732711</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,7 +299,8 @@
     <MESSAGE value="Added criteria functions for itineraries and tested them in main()." />
     <MESSAGE value="Added Obligation class and created an object in the table using GenericDao." />
     <MESSAGE value="Made some changes to the Accounting interface. Added Obligation class and created an object in the table using GenericDao." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made some changes to the Accounting interface. Added Obligation class and created an object in the table using GenericDao." />
+    <MESSAGE value="Added some TODO's. Quite cool." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some TODO's. Quite cool." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

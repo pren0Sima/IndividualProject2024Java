@@ -3,14 +3,13 @@ package org.transportCompanyProject;
 import org.transportCompanyProject.Enumerations.PositionType;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.dao.*;
+import org.transportCompanyProject.dto.ItineraryDto;
 import org.transportCompanyProject.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -130,11 +129,11 @@ public class Main {
         VehicleTypeDao.getVehicleTypes().stream().forEach(System.out::println);
 
         // 2. creating vehicles
-        Vehicle vehicle1 = new Vehicle();
-        vehicle1.setId(1);
-        vehicle1.setCompany(CompanyDao.getCompanyById(1));
-        vehicle1.setVehicleType(VehicleTypeDao.getVehicleTypeById(1));
-        VehicleDao.saveOrUpdateVehicle(vehicle1);
+        Vehicle bus1 = new Vehicle();
+        bus1.setId(1);
+        bus1.setCompany(CompanyDao.getCompanyById(4));
+        bus1.setVehicleType(VehicleTypeDao.getVehicleTypeById(1));
+        VehicleDao.saveOrUpdateVehicle(bus1);
 //        VehicleDao.addVehicle(new Vehicle());
 //        VehicleDao.deleteVehicle(VehicleDao.getVehicleById(2));
         VehicleDao.getVehicles().stream().forEach(System.out::println);
@@ -253,16 +252,73 @@ public class Main {
 //        obligationGenericDao.saveOrUpdateEntity(obligation1);
 
         // X. TODO: make the whole process:
-        // 1.1. TODO: Add costs for the itineraries
+        // 1.1. Add costs for the itineraries.
+        itinerary1.setCost(BigDecimal.valueOf(500));
+        itinerary2.setCost(BigDecimal.valueOf(450));
+        itinerary3.setCost(BigDecimal.valueOf(200));
         // 1.2. TODO: Add clients to the itineraries.
+        itinerary1.setClient(client2);
+        itinerary2.setClient(client2);
+        itinerary3.setClient(client1);
         // 1.3. TODO: Add drivers to the itineraries.
+        Driver driver2 = new Driver(2,
+                "Denis Vasilev");
+        DriverDao.addDrivingQualificationToDriver(DrivingQualificationDao.getDrivingQualificationById(2), driver2);
+        // when creating the itinerary, it adds the driver
+        itinerary1.setDriver(driver2);
+        itinerary2.setDriver(driver2);
+        itinerary3.setDriver(driver1);
         // 1.4. TODO: Add vehicles to the itineraries.
-        // 1.5. TODO: Make a method for executing an itinerary in which:
+        Vehicle truck1 = new Vehicle(2, CompanyDao.getCompanyById(5), vehicleType2);
+        Vehicle boat1 = new Vehicle(3, CompanyDao.getCompanyById(2), vehicleType3);
+
+        VehicleDao.saveOrUpdateVehicle(truck1);
+        VehicleDao.saveOrUpdateVehicle(boat1);
+
+        itinerary1.setVehicle(bus1);
+        itinerary2.setVehicle(truck1);
+        itinerary3.setVehicle(boat1);
+
+        ItineraryDao.saveOrUpdateItinerary(itinerary1);
+        ItineraryDao.saveOrUpdateItinerary(itinerary2);
+        ItineraryDao.saveOrUpdateItinerary(itinerary3);
+
+        // Let's try out some things:
+        // see all vehicles through dto - works fine.
+        VehicleDao.getVehiclesDTO().forEach(System.out::println);
+
+        // see all Itinerary details - works fine.
+//        ItineraryDao.getItinerariesDTO().forEach(System.out::println);
+        List<ItineraryDto> itinerariesList = ItineraryDao.getItinerariesDTO();
+
+        // 1.5. TODO: Make a void method for executing an itinerary in which:
+                                    // ItineraryDao.executeItinerary(itinerary){try catch for the type of exception thrown
                 // 1.5.1. TODO: We must make an obligation. If there is no client and no itinerary => exception
-                // 1.5.2. TODO: We must check the funds of the client. In not enough => exception
-                // 1.5.3. TODO: If all is good => 1) take money from client's balance,
-        //                                        2) add it to the company's balance and
-        //                                        3) mark the obligation as paid
-    }
+                                        // Obligation obligation = new Obligation(itinerary)
+                                        // ObligationDao.validateObligation(obligation) {
+        //                                      if (itinerary == null || itinerary.getClient() == null)
+        //                                      => throw new mustAddClientOrItineraryException()}
+                // 1.5.2. sTODO: We must check if the vehicle is connected to a company. If not => exception
+                                        // VehicleDao.validateVehicle(itinerary.getVehicle()){
+        //                                      if (vehicle.getCompany == null)
+        //                                      => throw new VehicleHasNoCompanyException() }
+                                                                                        // If yes => Company
+                // 1.5.3. TODO: We must check the funds of the client. In not enough => don't change the paid to true at the end
+                                        // bool ClientDao.validateClientsFunds(itinerary.getClient()) {
+        //                                      if (Client.getBalance.compareTo(itinerary.getCost().multiply(company.getOvercharge().add(BigDecimal.ONE))) < 0)
+        //                                      => return false;
+                        //                      else return true;
+                // 1.5.4. TODO: If all is good: if (validateClientsFunds == true)=>
+        //                                      1) TODO: take money from client's balance,
+                                        // makePayment(client, company, amount, obligation) {
+        //                                      ClientDao.subtractFromBalance(itinerary.getCost().multiply(company.getOvercharge()), itinerary.getClient());
+        //                                        2) TODO: add it to the company's balance and
+                                        //        CompanyDao.addToBalance(itinerary.getCost(), itinerary.getClient())
+        //                                        3) TODO: mark the obligation as paid
+                                        //        obligation.setPaid(true); }
+    }          // 1.5.5. TODO: If not -> the company pays and the obligation stays
+                                        // TODO: bool CompanyDao.validateCompanysFunds(amount, company)
+                                                  //  if true => CompanyDao.subtractFromBalance(itinerary.getCost(), company)
+                                                  // else => throw new NotEnoughMoneyInCompanyBalanceException()
 
 }
