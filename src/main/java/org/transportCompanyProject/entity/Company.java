@@ -27,8 +27,13 @@ public class Company {
     private Set<Vehicle> vehicles;
 
     @PositiveOrZero
+    @Column(name = "balance")
     private BigDecimal balance = BigDecimal.ZERO;
 
+    @Positive
+    @Column(name = "overcharge")
+    @DecimalMin(value = "0.01", message = "Overcharge should be at least 0.01 (1%) !")
+    private BigDecimal overcharge;
     public Company() {
     }
 
@@ -45,6 +50,13 @@ public class Company {
         this.id = id;
         this.name = name;
         this.balance = balance;
+    }
+
+    public Company(long id, String name, BigDecimal balance, BigDecimal overcharge) {
+        this.id = id;
+        this.name = name;
+        this.balance = balance;
+        this.overcharge = overcharge;
     }
 
     public long getId() {
@@ -69,6 +81,14 @@ public class Company {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public BigDecimal getOvercharge() {
+        return overcharge;
+    }
+
+    public void setOvercharge(BigDecimal overcharge) {
+        this.overcharge = overcharge;
     }
 
     public Set<Employee> getEmployees() {

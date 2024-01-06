@@ -190,12 +190,20 @@ public class Main {
 
         // 3. Check for companies that have an income between 10000 and 50000
             // 3.1. manipulate the data
+                // 3.1.1. set balance
         company1.setBalance(BigDecimal.valueOf(40000));
         company2.setBalance(BigDecimal.valueOf(1000));
         company3.setBalance(BigDecimal.valueOf(140000));
         company4.setBalance(BigDecimal.valueOf(30000));
         nestle1.setBalance(BigDecimal.valueOf(100000));
         nestle2.setBalance(BigDecimal.valueOf(10000));
+                // 3.1.2. set overcharge
+        company1.setOvercharge(BigDecimal.valueOf(0.3));
+        company2.setOvercharge(BigDecimal.valueOf(0.4));
+        company3.setOvercharge(BigDecimal.valueOf(0.45));
+        company4.setOvercharge(BigDecimal.valueOf(0.5));
+        nestle1.setOvercharge(BigDecimal.valueOf(0.35));
+        nestle2.setOvercharge(BigDecimal.valueOf(0.25));
 
         CompanyDao.saveOrUpdateCompany(company1);
         CompanyDao.saveOrUpdateCompany(company2);
