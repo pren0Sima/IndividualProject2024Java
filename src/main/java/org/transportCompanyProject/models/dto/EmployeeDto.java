@@ -2,7 +2,9 @@ package org.transportCompanyProject.models.dto;
 
 import org.transportCompanyProject.models.entity.Company;
 import org.transportCompanyProject.Enumerations.PositionType;
-
+/**
+ * Data Transfer Object (DTO) class representing an Employee for use in data exchange between layers.
+ */
 public class EmployeeDto {
     private long id;
     private String name;
@@ -47,7 +49,10 @@ public class EmployeeDto {
     public void setCompany(Company company) {
         this.company = company;
     }
-
+    /**
+     * An overridden toString() method that displays a EmployeeDto's id, name, positionType and companyName.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "EmployeeDto{" +

@@ -1,7 +1,8 @@
 package org.transportCompanyProject.models.reports;
-
+/**
+ * A simple class representing a report.
+ */
 public class Report {
-
     private String reportFileName;
     public Report(String reportFileName) {
         this.reportFileName = reportFileName;

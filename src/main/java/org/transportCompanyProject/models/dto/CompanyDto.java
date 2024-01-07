@@ -1,5 +1,7 @@
 package org.transportCompanyProject.models.dto;
-
+/**
+ * Data Transfer Object (DTO) class representing a Company for use in data exchange between layers.
+ */
 public class CompanyDto {
     private long id;
     private String name;
@@ -25,6 +27,10 @@ public class CompanyDto {
         this.name = name;
     }
 
+    /**
+     * An overridden toString() method that displays a CompanyDto's id and name.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "CompanyDto{" +

@@ -7,7 +7,9 @@ import org.transportCompanyProject.models.entity.Vehicle;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+/**
+ * Data Transfer Object (DTO) class representing an Itinerary for use in data exchange between layers.
+ */
 public class ItineraryDto implements Serializable {
     private long id;
 
@@ -41,7 +43,11 @@ public class ItineraryDto implements Serializable {
         this.driver = driver;
         this.client = client;
     }
-
+    /**
+     * An overridden toString() method that displays a ItineraryDto's id, startingPoint, destination,
+     * dateOfDeparture, dateOfArrival, cost, vehicle, driver name and client name.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "ItineraryDto{" +

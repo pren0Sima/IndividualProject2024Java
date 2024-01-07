@@ -2,7 +2,9 @@ package org.transportCompanyProject.models.dto;
 
 import org.transportCompanyProject.models.entity.Company;
 import org.transportCompanyProject.models.entity.VehicleType;
-
+/**
+ * Data Transfer Object (DTO) class representing a Vehicle for use in data exchange between layers.
+ */
 public class VehicleDto {
     private long id;
 
@@ -15,7 +17,10 @@ public class VehicleDto {
         this.company = company;
         this.vehicleType = vehicleType;
     }
-
+    /**
+     * An overridden toString() method that displays a VehicleDto's id, company and vehicleType.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "VehicleDto{" +

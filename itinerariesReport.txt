@@ -1,0 +1,41 @@
+Itineraries Report
+
+Itinerary id: 1
+Starting point: Sofia, Obikolna street, 21
+Destination: Gabrovo, Stoletov street, 15
+Date of departure: 2024-05-21
+Date of arrival: 2024-05-22
+Cost without overcharge: 500
+Cost with overcharge: 750.00
+Client: id: 2	name: Lidl
+Driver: Driver{id=2, name='Denis Vasilev'}
+Vehicle id: 1	Vehicle type: Bus
+Cargo id: 1		Cargo type: class org.transportCompanyProject.models.entity.Passenger
+Cargo id: 2		Cargo type: class org.transportCompanyProject.models.entity.Goods
+
+Itinerary id: 2
+Starting point: Varna, Pirin street 26
+Destination: Plovdiv, Kukush street 3
+Date of departure: 2024-06-12
+Date of arrival: 2024-06-12
+Cost without overcharge: 450
+Cost with overcharge: 607.50
+Client: id: 2	name: Lidl
+Driver: Driver{id=2, name='Denis Vasilev'}
+Vehicle id: 2	Vehicle type: Truck
+Cargo id: 4		Cargo type: class org.transportCompanyProject.models.entity.Passenger
+Cargo id: 5		Cargo type: class org.transportCompanyProject.models.entity.Passenger
+Cargo id: 3		Cargo type: class org.transportCompanyProject.models.entity.Passenger
+
+Itinerary id: 3
+Starting point: Sofia, Cherni Vrah boulevard 17
+Destination: Plovdiv, Kukush street 12
+Date of departure: 2024-07-21
+Date of arrival: 2024-07-23
+Cost without overcharge: 200
+Cost with overcharge: 280.00
+Client: id: 1	name: Samantha
+Driver: Driver{id=1, name='Mysterious private driver'}
+Vehicle id: 3	Vehicle type: Boat
+Cargo id: 6		Cargo type: class org.transportCompanyProject.models.entity.Goods
+Cargo id: 7		Cargo type: class org.transportCompanyProject.models.entity.Goods

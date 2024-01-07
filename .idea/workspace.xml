@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added javadocs to CargoDao.">
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added javadocs to all daos.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ClientDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CompanyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CompanyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DriverDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DriverDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DrivingQualificationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DrivingQualificationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/EmployeeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/GenericDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/GenericDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ItineraryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ItineraryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ObligationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ObligationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleTypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ClientDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ClientDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/CompanyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/CompanyDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/EmployeeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/EmployeeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ItineraryCargoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ItineraryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ItineraryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/VehicleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/VehicleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/ReportMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/ReportMaker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704650511642</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added javadocs to all daos.">
+      <option name="closed" value="true" />
+      <created>1704655261742</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1704655261742</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -362,7 +368,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Client abstraction expanded (added dto)" />
     <MESSAGE value="VehicleType added and started Vehicle abstraction" />
     <MESSAGE value="Added some functionality to the Vehicle and VehicleType. Need to figure out the dto's to display the foreign keys(for getVehicles())." />
     <MESSAGE value="Added Driver, DriverDao, DrivingQualification, DrivingQualificationDao and merged Driver and DrivingQualification into a mapping table. Need to test the methods for them in main." />
@@ -387,7 +392,8 @@
     <MESSAGE value="Brushed up the main function. Added javadocs to all entities' toString() methods and class declarations." />
     <MESSAGE value="Added javadocs to configuration's, exceptions' and enumerations' packages." />
     <MESSAGE value="Added javadocs to CargoDao." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added javadocs to CargoDao." />
+    <MESSAGE value="Added javadocs to all daos." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added javadocs to all daos." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
