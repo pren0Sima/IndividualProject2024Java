@@ -4,10 +4,11 @@ import org.transportCompanyProject.models.entity.Client;
 import org.transportCompanyProject.models.entity.Driver;
 import org.transportCompanyProject.models.entity.Vehicle;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ItineraryDto {
+public class ItineraryDto implements Serializable {
     private long id;
 
     private String startingPoint;

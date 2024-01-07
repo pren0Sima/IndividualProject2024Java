@@ -114,7 +114,7 @@ public class ItineraryDao {
                 itinerary.setCargo(cargos);
             }
             itinerary.getCargo().add(cargo);
-            // if the qualification is not in the database => add it; same for the driver
+            // if the cargo is not in the database => add it; same for the driver
             CargoDao.saveOrUpdateCargo(cargo);
             ItineraryDao.saveOrUpdateItinerary(itinerary);
 

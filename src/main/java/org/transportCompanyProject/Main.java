@@ -290,11 +290,39 @@ public class Main {
         itinerary2.setVehicle(truck1);
         itinerary3.setVehicle(boat1);
 
+        // giving each itinerary some Cargo:
+        // 1:
         ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(1), itinerary1);
+        ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(2), itinerary1);
+        System.out.println("Cargo for itinerary 1: ");
+        itinerary1.getCargo().stream().forEach(System.out::println);
+        // 2:
+        Passenger passenger2 = new Passenger(3, "Ivanka Shehova");
+        Passenger passenger3 = new Passenger(4, "Shopi Shopov");
+        Passenger passenger4 = new Passenger(5, "Sofia Ivanova");
+        passengerGenericDao.saveOrUpdateEntity(passenger2);
+        passengerGenericDao.saveOrUpdateEntity(passenger3);
+        passengerGenericDao.saveOrUpdateEntity(passenger4);
+
+        ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(3), itinerary2);
+        ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(4), itinerary2);
+        ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(5), itinerary2);
+
+        Goods goods2 = new Goods(6, BigDecimal.valueOf(0.5));
+        Goods goods3 = new Goods(7, BigDecimal.valueOf(0.2));
+        goodsGenericDao.saveOrUpdateEntity(goods2);
+        goodsGenericDao.saveOrUpdateEntity(goods3);
+        ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(6), itinerary3);
+        ItineraryDao.addCargoToItinerary(CargoDao.getCargoById(7), itinerary3);
 
         ItineraryDao.saveOrUpdateItinerary(itinerary1);
         ItineraryDao.saveOrUpdateItinerary(itinerary2);
         ItineraryDao.saveOrUpdateItinerary(itinerary3);
+
+        List<Itinerary> itineraryList = new ArrayList<>();
+        itineraryList.add(itinerary1);
+        itineraryList.add(itinerary2);
+        itineraryList.add(itinerary3);
 
         // Let's try out some things:
         // see all vehicles through dto - works fine.
@@ -331,18 +359,28 @@ public class Main {
         clientCopy.setBalance(BigDecimal.valueOf(2000));
         ClientDao.saveOrUpdateClient(clientCopy);
 
-        try {
-            ItineraryDao.executeItinerary(itinerary1);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
+//        try {
+//            ItineraryDao.executeItinerary(itinerary1);
+//        } catch (Exception e) {
+//            System.err.println(e);
+//        }
 
         // XI. Report making
         try{
+            // for single itinerary:
             Report itineraryReport = new Report("itineraryReport.txt");
-            ReportMaker.writeReportTitle("itineraryReport:\n", itineraryReport);
+            ReportMaker.createSingleItineraryReport("Itinerary report\n", itineraryReport, itinerary1);
+            // for all itineraries:
+            Report itinerariesListReport = new Report("itinerariesReport.txt");
+            ReportMaker.createItineraryListReport("Itineraries Report\n", itinerariesListReport, itineraryList);
+            // printing the reports:
+            System.out.println("\n");
+            ReportMaker.printReport(itineraryReport.getReportName());
+            System.out.println("\n\n");
+            ReportMaker.printReport(itinerariesListReport.getReportName());
         } catch (IOException e) {
-            System.err.println("An error occurred during report creation!");
+            System.err.println("An error occurred during report creation! : " + e);
         }
+
     }
 }
