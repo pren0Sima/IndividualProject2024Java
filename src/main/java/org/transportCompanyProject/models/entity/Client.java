@@ -6,6 +6,10 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Set;
 
+/**
+ * A Client entity class. It has an id, name and balance.
+ * It is referenced in entity classes Itinerary and Obligation.
+ */
 @Entity
 @Table(name = "client")
 public class Client {
@@ -71,6 +75,10 @@ public class Client {
         this.balance = balance;
     }
 
+    /**
+     * An overridden toString() method that displays a Client's id, name and balance.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Client{" +

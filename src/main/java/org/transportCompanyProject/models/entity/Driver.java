@@ -6,6 +6,10 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
+/**
+ * Entity class Driver. It has id, name drivingQualifications.
+ * It is referenced in entity class Itinerary.
+ */
 @Entity
 @Table(name = "driver")
 public class Driver {
@@ -67,12 +71,15 @@ public class Driver {
         this.drivingQualifications = drivingQualifications;
     }
 
+    /**
+     * An overridden toString() method, displaying a Driver object's id and name.
+     * @return A String object.
+     */
     @Override
     public String toString() {
         return "Driver{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-//                ", drivingQualification=" + drivingQualification +
                 '}';
     }
 }

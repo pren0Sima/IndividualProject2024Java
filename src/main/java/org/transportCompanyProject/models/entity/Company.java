@@ -6,6 +6,10 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Set;
 
+/**
+ * A Company entity class. It has an id, name, balance and overcharge.
+ * It is referenced in entity classes Employee and Vehicle.
+ */
 @Entity
 @Table(name="transport_company")
 public class Company {
@@ -19,7 +23,6 @@ public class Company {
     @Pattern(regexp = "^[A-Z].*", message = "Company should start with a capital letter!")
     private String name;
 
-    // collection of employees
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private Set<Employee> employees;
 
@@ -107,6 +110,10 @@ public class Company {
         this.vehicles = vehicles;
     }
 
+    /**
+     * An overridden toString() method, displaying Company's id and name.
+     * @return A String object.
+     */
     @Override
     public String toString() {
         return "Company{" +

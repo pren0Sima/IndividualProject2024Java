@@ -5,7 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-
+/**
+ * An entity class Passenger. It has an id and name fields.
+ */
 @Entity
 @Table(name = "passenger")
 public class Passenger extends Cargo {
@@ -33,7 +35,10 @@ public class Passenger extends Cargo {
         super(id);
         this.name = name;
     }
-
+    /**
+     * An overridden toString() method that displays a Passenger object's id and name.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Passenger{" +

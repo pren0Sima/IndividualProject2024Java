@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+/**
+ * An entity class DrivingQualification. It has an id and type.
+ * It is referenced in entity class Driver.
+ */
 @Entity
 @Table(name = "driving_qualifications")
 public class DrivingQualification {
@@ -14,7 +18,8 @@ public class DrivingQualification {
     private long id;
     @Column(name="type", nullable = false, unique = true)
     private String type;
-
+    @ManyToMany(mappedBy = "drivingQualifications")
+    private Set<Driver> drivers;
     public DrivingQualification() {
     }
 
@@ -26,8 +31,6 @@ public class DrivingQualification {
         this.id = id;
         this.type = type;
     }
-    @ManyToMany(mappedBy = "drivingQualifications")
-    private Set<Driver> drivers;
 
     public long getId() {
         return id;
@@ -53,6 +56,10 @@ public class DrivingQualification {
         this.drivers = drivers;
     }
 
+    /**
+     * An overridden toString() method, displaying a DriverQualification object's id and type.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "DrivingQualifications{" +

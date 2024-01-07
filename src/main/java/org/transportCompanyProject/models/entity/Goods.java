@@ -6,7 +6,9 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
-
+/**
+ * An entity class Goods. It has an inherited id and own weight.
+ */
 @Entity
 @Table(name = "goods")
 public class Goods extends Cargo {
@@ -37,7 +39,10 @@ public class Goods extends Cargo {
         super(id);
         this.weight = weight;
     }
-
+    /**
+     * An overridden toString() method that displays a Goods object's id and weight.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Goods{" +

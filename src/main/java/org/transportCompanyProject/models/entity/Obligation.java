@@ -1,7 +1,10 @@
 package org.transportCompanyProject.models.entity;
 
 import jakarta.persistence.*;
-
+/**
+ * An entity class Obligation. It has an id, client, itinerary and paid field.
+ * It is referenced in entity class Obligation.
+ */
 @Entity
 @Table(name="obligation")
 public class Obligation {
@@ -63,13 +66,14 @@ public class Obligation {
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
-
+    /**
+     * An overridden toString() method that displays an Obligation's id, and paid fields.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Obligation{" +
                 "id=" + id +
-//                ", client=" + client +
-//                ", itinerary=" + itinerary +
                 ", paid=" + paid +
                 '}';
     }

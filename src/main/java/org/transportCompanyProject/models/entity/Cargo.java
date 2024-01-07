@@ -4,9 +4,12 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+/**
+ * A Cargo entity class. It is inherited by Passenger and Goods. It has an id.
+ * It is referenced in entity class Itinerary.
+ */
 @Entity
 @Table(name = "cargo")
-// creates the base class' table, bc it's an entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cargo {
     @Id
@@ -30,6 +33,10 @@ public class Cargo {
         this.id = id;
     }
 
+    /**
+     * A toString() overridden method that displays the Cargo's id.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Cargo{" +

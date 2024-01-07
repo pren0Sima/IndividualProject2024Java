@@ -6,6 +6,9 @@ import org.transportCompanyProject.Enumerations.PositionType;
 
 import java.math.BigDecimal;
 
+/**
+ * Entity class Employee. It has an id, name, positionType, salary and company.
+ */
 @Table(name = "employee")
 @Entity
 public class Employee {
@@ -89,7 +92,10 @@ public class Employee {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
-
+    /**
+     * An overridden toString() method that displays an Employee's id, name, positionType and salary.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Employee{" +
@@ -97,7 +103,6 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", positionType=" + positionType +
                 ", salary=" + salary +
-//                ", company=" + company +
                 '}';
     }
 }

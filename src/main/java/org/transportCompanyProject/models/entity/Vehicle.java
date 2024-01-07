@@ -3,7 +3,10 @@ package org.transportCompanyProject.models.entity;
 import jakarta.persistence.*;
 
 import java.util.Set;
-
+/**
+ * Entity class Vehicle. It has id, company and vehicleType fields.
+ * It is referenced in entity class Itinerary.
+ */
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
@@ -53,7 +56,10 @@ public class Vehicle {
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
     }
-
+    /**
+     * An overridden toString() method that displays a Vehicle object's id.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Vehicle{" +

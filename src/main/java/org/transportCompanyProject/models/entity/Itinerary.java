@@ -8,7 +8,10 @@ import jakarta.validation.constraints.AssertTrue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
-
+/**
+ * An entity class Itinerary. It has an id, staringPoint, destination, dateOfDeparture, dateOfArrival and cost without overcharge.
+ * It is referenced in entity class Obligation.
+ */
 @Entity
 @Table(name="itinerary")
 public class Itinerary {
@@ -168,7 +171,10 @@ public class Itinerary {
     public void setClient(Client client) {
         this.client = client;
     }
-
+    /**
+     * An overridden toString() method that displays an Itinerary's id, staringPoint, destination, dateOfDeparture, dateOfArrival and cost without overcharge.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "Itinerary{" +

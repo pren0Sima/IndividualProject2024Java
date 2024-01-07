@@ -5,7 +5,10 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.util.Set;
-
+/**
+ * Entity class VehicleType. It has an id and type.
+ * It is referenced in entity class Vehicle.
+ */
 @Table(name = "vehicle_type")
 @Entity
 public class VehicleType {
@@ -55,7 +58,10 @@ public class VehicleType {
     public void setVehicles(Set<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
-
+    /**
+     * An overridden toString() method that displays a VehicleType object's id and type.
+     * @return a String object.
+     */
     @Override
     public String toString() {
         return "VehicleType{" +
