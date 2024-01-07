@@ -6,9 +6,21 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.transportCompanyProject.models.entity.*;
 
+/**
+ * A class for adding annotated as @Entity classes as tables in the database.
+ */
 public class SessionFactoryUtil {
+    /**
+     * An instance of the Hibernate SessionFactory.
+     */
     private static SessionFactory sessionFactory;
 
+    /**
+     * Retrieves the instance of the Hibernate SessionFactory. If the
+     * SessionFactory is not yet initialized, it creates a new instance by
+     * configuring Hibernate with annotated classes.
+     * @return the Hibernate SessionFactory.
+     */
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             Configuration configuration = new Configuration();

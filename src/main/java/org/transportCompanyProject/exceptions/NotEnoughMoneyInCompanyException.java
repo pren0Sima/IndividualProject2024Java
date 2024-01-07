@@ -1,5 +1,11 @@
 package org.transportCompanyProject.exceptions;
-
+/**
+ * A checked exception intended to be thrown when a Company object has an insufficient amount of money.
+ * <p>
+ *     Example: <i>ItineraryDao.executeItinerary(Itinerary itinerary)</i>
+ *     The method throws this exception when company.balance < itinerary.cost.
+ * </p>
+ */
 public class NotEnoughMoneyInCompanyException extends Exception {
     /**
      * Constructs a new exception with the specified detail message.  The

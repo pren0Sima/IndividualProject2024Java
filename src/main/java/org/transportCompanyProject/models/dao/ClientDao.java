@@ -72,10 +72,7 @@ public class ClientDao {
         else return true;
     }
     public static boolean canAClientPay(BigDecimal price, Client client) {
-        if (client.getBalance().compareTo(price) < 0)
-            return false;
-        else
-            return true;
+        return client.getBalance().compareTo(price) >= 0;
     }
 
     public static void addToBalance(BigDecimal amount, Client client) throws AmountShouldBePositiveException {

@@ -1,5 +1,13 @@
 package org.transportCompanyProject.exceptions;
 
+/**
+ * A custom checked exception intended to be thrown when a value is not positive when it is required.
+ * <p>
+ *     Example: In <i>ClientDao.addToBalance(BigDecimal amount, Client client)</i> the amount
+ *     parameter should be a positive <i>BigDecimal</i> value, because it is not logical to add a negative
+ *     or a <i>BigDecimal.ZERO</i> to a Client's balance.
+ * </p>
+ */
 public class AmountShouldBePositiveException extends Exception {
     /**
      * Constructs a new exception with the specified detail message.  The
