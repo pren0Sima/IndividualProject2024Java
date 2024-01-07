@@ -14,8 +14,15 @@ import org.transportCompanyProject.Enumerations.PositionType;
 
 import java.math.BigDecimal;
 import java.util.List;
-
+/**
+ * Data Access Object (DAO) class for managing Employee entities in the database.
+ */
 public class EmployeeDao {
+    /**
+     * Adds a new employee to the database.
+     *
+     * @param employee The Employee object to be added.
+     */
     public static void addEmployee(Employee employee) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -24,6 +31,12 @@ public class EmployeeDao {
             transaction.commit();
         }
     }
+    /**
+     * Retrieves an employee by their id from the database.
+     *
+     * @param id The ID of the Employee to be retrieved.
+     * @return The Employee object with the specified ID, or null if not found.
+     */
     public static Employee getEmployeeById(long id) {
         Employee employee;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -33,6 +46,11 @@ public class EmployeeDao {
         }
         return employee;
     }
+    /**
+     * Saves or updates an existing employee in the database.
+     *
+     * @param employee The Employee object to be saved or updated.
+     */
     public static void saveOrUpdateEmployee(Employee employee) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -41,6 +59,11 @@ public class EmployeeDao {
             transaction.commit();
         }
     }
+    /**
+     * Deletes an employee from the database.
+     *
+     * @param employee The Employee object to be deleted.
+     */
     public static void deleteEmployee(Employee employee){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
@@ -49,6 +72,11 @@ public class EmployeeDao {
             transaction.commit();
         }
     }
+    /**
+     * Retrieves a list of all employees from the database.
+     *
+     * @return List of all employees in the database.
+     */
     public static List<Employee> getEmployees() {
         List<Employee> employees;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -59,7 +87,11 @@ public class EmployeeDao {
         }
         return employees;
     }
-
+    /**
+     * Retrieves a list of EmployeeDto objects containing specific employee details.
+     *
+     * @return List of EmployeeDto objects.
+     */
     public static List<EmployeeDto> getEmployeesDTO() {
         List<EmployeeDto> employees;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -75,7 +107,13 @@ public class EmployeeDao {
         return employees;
     }
 
-    // Criteria queries
+    /**
+     * Retrieves a list of employees with salaries within a specified range.
+     *
+     * @param bottom The lower limit of the salary range.
+     * @param top    The upper limit of the salary range.
+     * @return List of employees with salaries within the specified range.
+     */
     public static List<Employee> employeesFindBySalaryBetween(BigDecimal bottom, BigDecimal top) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -88,7 +126,12 @@ public class EmployeeDao {
             return query.getResultList();
         }
     }
-    // find employees by position
+    /**
+     * Retrieves a list of employees based on their position type.
+     *
+     * @param positionType The PositionType to filter employees.
+     * @return List of employees with the specified position type.
+     */
     public static List<Employee> employeesFindByPosition(PositionType positionType) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -101,7 +144,11 @@ public class EmployeeDao {
             return query.getResultList();
         }
     }
-    // get ordered employees by salaries:
+    /**
+     * Retrieves a list of employees ordered by salary in ascending order.
+     *
+     * @return List of employees ordered by salary in ascending order.
+     */
     public static List<Employee> getOrderedEmployeesBySalaryASC() {
         List<Employee> employees;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -114,7 +161,11 @@ public class EmployeeDao {
         return employees;
     }
 
-    // descending order (highest to lowest)
+    /**
+     * Retrieves a list of companies ordered by name in descending order.
+     *
+     * @return List of companies ordered by name in descending order.
+     */
     public static List<Employee> getOrderedEmployeesBySalaryDESC() {
         List<Employee> employees;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -127,7 +178,11 @@ public class EmployeeDao {
         return employees;
     }
 
-    // get employees ordered by position
+    /**
+     * Retrieves a list of companies ordered by position type in ascending order.
+     *
+     * @return List of companies ordered by positionType in ascending order.
+     */
     public static List<Employee> getOrderedEmployeesByPositionASC() {
         List<Employee> employees;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -139,8 +194,11 @@ public class EmployeeDao {
         }
         return employees;
     }
-
-    // get employees employees ordered by position and DESC salary(highest to lowest)
+    /**
+     * Retrieves a list of companies ordered by position type in ascending order and salaries in descending.
+     *
+     * @return List of companies ordered by positionType in ascending order and salary in descending order.
+     */
     public static List<Employee> getOrderedEmployeesByASCPositionANDDESCSalary () {
         List<Employee> employees;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -152,6 +210,12 @@ public class EmployeeDao {
         }
         return employees;
     }
+    /**
+     * Retrieves a list of employees with names starting with the specified string.
+     *
+     * @param name The starting string of the employee names.
+     * @return List of employees with names starting with the specified string.
+     */
     public static List<Employee> employeesFindByNameStartingWith(String name) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();

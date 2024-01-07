@@ -14,8 +14,15 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * Data Access Object (DAO) class for performing database operations related to Itinerary entities.
+ */
 public class ItineraryDao {
+    /**
+     * Adds a new Itinerary to the database.
+     *
+     * @param itinerary The Itinerary object to be added.
+     */
     public static void addItinerary(Itinerary itinerary) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -24,7 +31,11 @@ public class ItineraryDao {
             transaction.commit();
         }
     }
-
+    /**
+     * Deletes an Itinerary from the database.
+     *
+     * @param itinerary The Itinerary object to be deleted.
+     */
     public static void deleteItinerary(Itinerary itinerary){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
@@ -33,6 +44,12 @@ public class ItineraryDao {
             transaction.commit();
         }
     }
+    /**
+     * Retrieves an Itinerary by its id from the database.
+     *
+     * @param id The id of the Itinerary to be retrieved.
+     * @return The Itinerary object with the specified id, or null if not found.
+     */
     public static Itinerary getItineraryById(long id) {
         Itinerary itinerary;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -42,6 +59,11 @@ public class ItineraryDao {
         }
         return itinerary;
     }
+    /**
+     * Saves or updates an existing Itinerary in the database.
+     *
+     * @param itinerary The Itinerary object to be saved or updated.
+     */
     public static void saveOrUpdateItinerary(Itinerary itinerary) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -50,6 +72,11 @@ public class ItineraryDao {
             transaction.commit();
         }
     }
+    /**
+     * Retrieves a list of all Itineraries from the database.
+     *
+     * @return List of all Itineraries in the database.
+     */
     public static List<Itinerary> getItineraries() {
         List<Itinerary> itineraries;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -60,7 +87,11 @@ public class ItineraryDao {
         }
         return itineraries;
     }
-    // DTO
+    /**
+     * Retrieves a list of ItineraryDto objects, representing Itineraries, from the database.
+     *
+     * @return List of ItineraryDto objects.
+     */
     public static List<ItineraryDto> getItinerariesDTO() {
         List<ItineraryDto> itineraryDtos;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -75,9 +106,12 @@ public class ItineraryDao {
         }
         return itineraryDtos;
     }
-
-    // criteria queries:
-    // get by same destination
+    /**
+     * Retrieves a list of Itineraries with a destination containing the specified substring.
+     *
+     * @param destinationSubstring The substring to search for in the destination.
+     * @return List of matching Itineraries.
+     */
     public static List<Itinerary> itinerariesFindByDestination(String destinationSubstring) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -90,7 +124,11 @@ public class ItineraryDao {
             return itineraries;
         }
     }
-    // sort lexicographically
+    /**
+     * Retrieves a list of Itineraries sorted lexicographically by destination.
+     *
+     * @return List of Itineraries sorted by destination.
+     */
     public static List<Itinerary> getOrderedItinerariesByDestination() {
         List<Itinerary> itineraries;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -102,7 +140,12 @@ public class ItineraryDao {
         }
         return itineraries;
     }
-
+    /**
+     * Adds a Cargo to an Itinerary, updating the database accordingly.
+     *
+     * @param cargo     The Cargo object to be added.
+     * @param itinerary The Itinerary object to which the Cargo is added.
+     */
     public static void addCargoToItinerary(Cargo cargo, Itinerary itinerary) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -121,14 +164,32 @@ public class ItineraryDao {
             transaction.commit();
         }
     }
+    /**
+     * Calculates the price with overcharge based on the given base price and overcharge percentage.
+     *
+     * @param basePrice  The base price of the Itinerary.
+     * @param overcharge The overcharge percentage.
+     * @return The calculated price with overcharge.
+     */
     public static BigDecimal calculatePriceWithOvercharge(BigDecimal basePrice, BigDecimal overcharge) {
         return basePrice.multiply(overcharge.add(BigDecimal.ONE));
     }
-
+    /**
+     * Gets the overcharge percentage of the company associated with the given Itinerary.
+     *
+     * @param itinerary The Itinerary from which to retrieve the overcharge.
+     * @return The overcharge percentage of the associated company.
+     */
     public static BigDecimal getCompanyOverchargeThroughItinerary(Itinerary itinerary) {
         return CompanyDao.getCompanyById(itinerary.getVehicle().getCompany().getId()).getOvercharge();
     }
-
+    /**
+     * Validates whether the given Itinerary contains vital information.
+     *
+     * @param itinerary The Itinerary to be validated.
+     * @return True if the Itinerary is valid, false otherwise.
+     * @throws ItineraryLacksVitalInformation If the Itinerary lacks vital information.
+     */
     public static boolean validateItinerary(Itinerary itinerary) throws ItineraryLacksVitalInformation {
         if (itinerary == null || itinerary.getCost() == null
                 || itinerary.getClient() == null
@@ -136,6 +197,16 @@ public class ItineraryDao {
             throw new ItineraryLacksVitalInformation("Itinerary does not exist or lacks cost, client and/or vehicle!");
         else return true;
     }
+    /**
+     * Executes an Itinerary, performing necessary obligations and transactions.
+     *
+     * @param itinerary The Itinerary to be executed.
+     * @throws ClientDoesNotExistException      If the client associated with the Itinerary does not exist.
+     * @throws ItineraryLacksVitalInformation   If the Itinerary lacks vital information.
+     * @throws VehicleHasNoCompanyException     If the associated Vehicle has no associated Company.
+     * @throws AmountShouldBePositiveException  If the amount to be paid is not positive.
+     * @throws NotEnoughMoneyInCompanyException If the Company does not have enough money to cover the costs.
+     */
     public static void executeItinerary(Itinerary itinerary) throws ClientDoesNotExistException,
             ItineraryLacksVitalInformation, VehicleHasNoCompanyException, AmountShouldBePositiveException,
             NotEnoughMoneyInCompanyException {

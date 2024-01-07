@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added javadocs to configuration's, exceptions' and enumerations' packages.">
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added javadocs to CargoDao.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CargoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CargoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ClientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CompanyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CompanyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DriverDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DriverDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DrivingQualificationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/DrivingQualificationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/EmployeeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/GenericDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/GenericDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ItineraryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ItineraryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ObligationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ObligationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/VehicleTypeDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704649228755</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added javadocs to CargoDao.">
+      <option name="closed" value="true" />
+      <created>1704650511642</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1704650511642</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -346,7 +362,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Client abstraction added" />
     <MESSAGE value="Client abstraction expanded (added dto)" />
     <MESSAGE value="VehicleType added and started Vehicle abstraction" />
     <MESSAGE value="Added some functionality to the Vehicle and VehicleType. Need to figure out the dto's to display the foreign keys(for getVehicles())." />
@@ -371,7 +386,8 @@
     <MESSAGE value="Made reports." />
     <MESSAGE value="Brushed up the main function. Added javadocs to all entities' toString() methods and class declarations." />
     <MESSAGE value="Added javadocs to configuration's, exceptions' and enumerations' packages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added javadocs to configuration's, exceptions' and enumerations' packages." />
+    <MESSAGE value="Added javadocs to CargoDao." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added javadocs to CargoDao." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

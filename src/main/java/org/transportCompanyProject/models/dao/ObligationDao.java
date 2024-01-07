@@ -6,8 +6,15 @@ import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.models.entity.Obligation;
 
 import java.util.List;
-
+/**
+ * Data Access Object (DAO) class for performing database operations related to Obligation entities.
+ */
 public class ObligationDao {
+    /**
+     * Adds a new Obligation to the database.
+     *
+     * @param obligation The Obligation object to be added.
+     */
     public static void addObligation(Obligation obligation) {
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -16,7 +23,11 @@ public class ObligationDao {
             transaction.commit();
         }
     }
-
+    /**
+     * Deletes an Obligation from the database.
+     *
+     * @param obligation The Obligation object to be deleted.
+     */
     public static void deleteObligation(Obligation obligation){
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
@@ -25,6 +36,12 @@ public class ObligationDao {
             transaction.commit();
         }
     }
+    /**
+     * Retrieves an Obligation by its id from the database.
+     *
+     * @param id The id of the Obligation to be retrieved.
+     * @return The Obligation object with the specified id, or null if not found.
+     */
     public static Obligation getObligationById(long id) {
         Obligation obligation;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -34,6 +51,11 @@ public class ObligationDao {
         }
         return obligation;
     }
+    /**
+     * Saves or updates an existing Obligation in the database.
+     *
+     * @param obligation The Obligation object to be saved or updated.
+     */
     public static void saveOrUpdateObligation(Obligation obligation) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -42,6 +64,11 @@ public class ObligationDao {
             transaction.commit();
         }
     }
+    /**
+     * Retrieves a list of all Obligations from the database.
+     *
+     * @return List of all Obligations in the database.
+     */
     public static List<Obligation> getObligations() {
         List<Obligation> obligations;
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
