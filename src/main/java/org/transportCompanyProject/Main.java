@@ -259,11 +259,14 @@ public class Main {
         ItineraryDao.saveOrUpdateItinerary(itinerary1);
         ItineraryDao.saveOrUpdateItinerary(itinerary2);
         ItineraryDao.saveOrUpdateItinerary(itinerary3);
-        // creating a list with the itineraries (used later)
+        // 1 way: creating a list with the itineraries (used later)
         List<Itinerary> itineraryList = new ArrayList<>();
         itineraryList.add(itinerary1);
         itineraryList.add(itinerary2);
         itineraryList.add(itinerary3);
+        // 2 way: use criteria query
+        System.out.println("Trying out CargoDao.getItinerarysCargoList() for itinerary1: ");
+        CargoDao.getItinerarysCargoList(1).stream().forEach(System.out::println);
 
         // XI. Let's try out some things:
         // see all vehicles through dto - works fine.

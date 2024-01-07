@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Brushed up the main function. Added javadocs to all entities' toString() methods and class declarations.">
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added javadocs to configuration's, exceptions' and enumerations' packages.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Enumerations/PositionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Enumerations/PositionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/configuration/SessionFactoryUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/AmountShouldBePositiveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/AmountShouldBePositiveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/ClientDoesNotExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/ClientDoesNotExistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/ItineraryLacksVitalInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/ItineraryLacksVitalInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/NotEnoughMoneyInCompanyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/NotEnoughMoneyInCompanyException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/VehicleHasNoCompanyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/exceptions/VehicleHasNoCompanyException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/ClientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CargoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dao/CargoDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -329,7 +323,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704646577408</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added javadocs to configuration's, exceptions' and enumerations' packages.">
+      <option name="closed" value="true" />
+      <created>1704649228755</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1704649228755</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -344,7 +346,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Accounting functionality added" />
     <MESSAGE value="Client abstraction added" />
     <MESSAGE value="Client abstraction expanded (added dto)" />
     <MESSAGE value="VehicleType added and started Vehicle abstraction" />
@@ -369,7 +370,8 @@
     <MESSAGE value="Extended CargoDao. Added classes for the report making." />
     <MESSAGE value="Made reports." />
     <MESSAGE value="Brushed up the main function. Added javadocs to all entities' toString() methods and class declarations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Brushed up the main function. Added javadocs to all entities' toString() methods and class declarations." />
+    <MESSAGE value="Added javadocs to configuration's, exceptions' and enumerations' packages." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added javadocs to configuration's, exceptions' and enumerations' packages." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
