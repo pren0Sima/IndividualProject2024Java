@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 /**
  * Data Transfer Object (DTO) class representing an Itinerary for use in data exchange between layers.
+ * It has id, startingPoint, destination, dateOfDeparture, dateOfArrival, cost, vehicle, driver, client but no cargo collection.
  */
 public class ItineraryDto implements Serializable {
     private long id;

@@ -3,8 +3,8 @@ Itinerary report
 Itinerary id: 1
 Starting point: Sofia, Obikolna street, 21
 Destination: Gabrovo, Stoletov street, 15
-Date of departure: 2024-05-21
-Date of arrival: 2024-05-22
+Date of departure: 2023-05-21
+Date of arrival: 2023-05-22
 Cost without overcharge: 500
 Cost with overcharge: 750.00
 Client: id: 2	name: Lidl

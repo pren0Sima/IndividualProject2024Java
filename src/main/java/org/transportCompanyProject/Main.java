@@ -58,11 +58,11 @@ public class Main {
 
         // IV. Itinerary
         Itinerary itinerary1 = new Itinerary(1, "Sofia, Obikolna street, 21",
-                "Gabrovo, Stoletov street, 15", LocalDate.of(2024, 05, 21),
-                LocalDate.of(2024, 05, 22));
+                "Gabrovo, Stoletov street, 15", LocalDate.of(2023, 05, 21),
+                LocalDate.of(2023, 05, 22));
         Itinerary itinerary2 = new Itinerary(2, "Varna, Pirin street 26",
-                "Plovdiv, Kukush street 3", LocalDate.of(2024, 06, 12),
-                LocalDate.of(2024, 06, 12));
+                "Plovdiv, Kukush street 3", LocalDate.of(2023, 06, 12),
+                LocalDate.of(2023, 06, 12));
         Itinerary itinerary3 = new Itinerary(3, "Sofia, Cherni Vrah boulevard 17",
                 "Plovdiv, Kukush street 12", LocalDate.of(2024, 07, 21),
                 LocalDate.of(2024, 07, 23));
@@ -344,6 +344,11 @@ public class Main {
         } catch (IOException e) {
             System.err.println("An error occurred during report creation! : " + e);
         }
+
+        int countOfExecutedItineraries = ItineraryDao.countExecutedItinerariesDTO();
+        BigDecimal totalCostOfItineraries = ItineraryDao.totalCostOfExecutedItineraries();
+        System.out.println("\nCount of executed itineraries: " + countOfExecutedItineraries);
+        System.out.println("\nTotal cost of executed itineraries: " + totalCostOfItineraries);
 
         // XIII. Point 9: some additional reports:
             // 1. Create a report for a total amount of executed itineraries

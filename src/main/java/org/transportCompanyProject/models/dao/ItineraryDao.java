@@ -11,6 +11,7 @@ import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.models.dto.ItineraryDto;
 import org.transportCompanyProject.exceptions.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -244,5 +245,42 @@ public class ItineraryDao {
                 }
             }
         }
+    }
+
+    /**
+     * Counts the number of itineraries executed before the current date. It uses Dtos.
+     *
+     * @return the count of the executed itineraries
+     */
+    public static int countExecutedItinerariesDTO() {
+        int count = 0;
+        List<ItineraryDto> itineraryDtoList = getItinerariesDTO();
+        for(ItineraryDto itineraryDto : itineraryDtoList) {
+            if(itineraryDto.getDateOfArrival().isBefore(LocalDate.now())){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Calculates the total cost of the executed itineraries in the database.
+     *
+     * @return a BigDecimal value of the sum of the costs.
+     */
+    public static BigDecimal totalCostOfExecutedItineraries() {
+        LocalDate currentDate = LocalDate.now();
+        try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Object result = session.createQuery("SELECT SUM(cost) FROM Itinerary" +
+                            " WHERE dateOfArrival < :currentDate", Itinerary.class)
+                    .setParameter("currentDate", currentDate)
+                    .getSingleResult();
+            if (result != null) {
+                return (BigDecimal) result;
+            }
+            transaction.commit();
+        }
+        return BigDecimal.ZERO;
     }
 }
