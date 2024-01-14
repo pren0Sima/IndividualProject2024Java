@@ -3,12 +3,13 @@ package org.transportCompanyProject.models.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
+import org.transportCompanyProject.models.dto.ItineraryDto;
 import org.transportCompanyProject.models.entity.Driver;
 import org.transportCompanyProject.models.entity.DrivingQualification;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * Data Access Object (DAO) class for managing Driver entities in the database.
  */
@@ -104,5 +105,32 @@ public class DriverDao {
 
             transaction.commit();
         }
+    }
+
+    /**
+     * A function that counts how many itineraries a driver has executed.
+     *
+     * @param driver The driver whose itineraries are counted.
+     * @return       Returns the count as an integer.
+     */
+    public static int countDriverExecutedItineraries(Driver driver) {
+        int count = 0;
+        List<ItineraryDto> executedItinerariesDto = ItineraryDao.getExecutedItinerariesDto();
+        for(ItineraryDto itinerary : executedItinerariesDto){
+            if(driver.equals(itinerary.getDriver())){
+                count++;
+            }
+        }
+        return count;
+    }
+    public static Map<Driver, Integer> driversAndTheirExecutedItinerariesCount() {
+        List<Driver> allDrivers = getDrivers();
+        Map<Driver, Integer> map = allDrivers.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toMap(
+                        driver -> driver,
+                        driver -> DriverDao.countDriverExecutedItineraries(driver)
+                ));
+        return map;
     }
 }

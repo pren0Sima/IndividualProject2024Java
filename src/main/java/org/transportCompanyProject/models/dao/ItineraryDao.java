@@ -12,6 +12,7 @@ import org.transportCompanyProject.models.dto.ItineraryDto;
 import org.transportCompanyProject.exceptions.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -253,16 +254,19 @@ public class ItineraryDao {
      * @return the count of the executed itineraries
      */
     public static int countExecutedItinerariesDTO() {
-        int count = 0;
-        List<ItineraryDto> itineraryDtoList = getItinerariesDTO();
-        for(ItineraryDto itineraryDto : itineraryDtoList) {
-            if(itineraryDto.getDateOfArrival().isBefore(LocalDate.now())){
-                count++;
-            }
-        }
-        return count;
+        return getExecutedItinerariesDto().size();
     }
 
+    public static List<ItineraryDto> getExecutedItinerariesDto(){
+        List<ItineraryDto> executedItineraries = new ArrayList<>();
+        List<ItineraryDto> allItineraries = getItinerariesDTO();
+        for(ItineraryDto itinerary : allItineraries){
+            if(itinerary.getDateOfArrival().isBefore(LocalDate.now())){
+                executedItineraries.add(itinerary);
+            }
+        }
+        return executedItineraries;
+    }
     /**
      * Calculates the total cost of the executed itineraries in the database.
      *

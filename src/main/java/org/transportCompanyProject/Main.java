@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -347,14 +348,16 @@ public class Main {
 
         int countOfExecutedItineraries = ItineraryDao.countExecutedItinerariesDTO();
         BigDecimal totalCostOfItineraries = ItineraryDao.totalCostOfExecutedItineraries();
+        int driverItinerariesCount = DriverDao.countDriverExecutedItineraries(DriverDao.getDriverById(2));
         System.out.println("\nCount of executed itineraries: " + countOfExecutedItineraries);
         System.out.println("\nTotal cost of executed itineraries: " + totalCostOfItineraries);
+        System.out.println("\nNumber of executed itineraries by driver.id = 2: " + driverItinerariesCount);
 
+        Map<Driver, Integer> driversAndTheirExecutedItinerariesCount = DriverDao.driversAndTheirExecutedItinerariesCount();
+        // Alternatively, using forEach on the entry set
+        driversAndTheirExecutedItinerariesCount.forEach((driver, count) ->
+                System.out.println("Driver: " + driver.getName() + ", Executed Itineraries Count: " + count));
         // XIII. Point 9: some additional reports:
-            // 1. Create a report for a total amount of executed itineraries
-                // 1.1. write(int numberOfExecutedItineraries -> if dateOfDeparture.isBefore(LocalDate.now()) count++)) this ain't it, but we can work on it
-            // 2. Add to report sum(itinerary cost) of all executed itineraries
-            // 3. Add to report number of itineraries executed by a certain driver
             // 4. Add to report company profit for a certain amount of time
             // 5. Add to report how much a company has earned by each driver
     }
