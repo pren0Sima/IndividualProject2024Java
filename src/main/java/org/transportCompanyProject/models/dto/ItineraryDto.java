@@ -43,6 +43,43 @@ public class ItineraryDto implements Serializable {
         this.driver = driver;
         this.client = client;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getStartingPoint() {
+        return startingPoint;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public LocalDate getDateOfDeparture() {
+        return dateOfDeparture;
+    }
+
+    public LocalDate getDateOfArrival() {
+        return dateOfArrival;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
     /**
      * An overridden toString() method that displays a ItineraryDto's id, startingPoint, destination,
      * dateOfDeparture, dateOfArrival, cost, vehicle, driver name and client name.

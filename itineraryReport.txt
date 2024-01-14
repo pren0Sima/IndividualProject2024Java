@@ -10,5 +10,5 @@ Cost with overcharge: 750.00
 Client: id: 2	name: Lidl
 Driver: Driver{id=2, name='Denis Vasilev'}
 Vehicle id: 1	Vehicle type: Bus
-Cargo id: 1		Cargo type: class org.transportCompanyProject.models.entity.Passenger
-Cargo id: 2		Cargo type: class org.transportCompanyProject.models.entity.Goods
+Cargo id: 1		Cargo type: Passenger
+Cargo id: 2		Cargo type: Goods

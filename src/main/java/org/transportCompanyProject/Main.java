@@ -2,6 +2,7 @@ package org.transportCompanyProject;
 
 import org.transportCompanyProject.Enumerations.PositionType;
 import org.transportCompanyProject.models.dao.*;
+import org.transportCompanyProject.models.dto.ItineraryDto;
 import org.transportCompanyProject.models.entity.*;
 import org.transportCompanyProject.configuration.SessionFactoryUtil;
 import org.transportCompanyProject.models.reports.Report;
@@ -309,6 +310,7 @@ public class Main {
 //        }
 
         // XII. Report making
+            // 1. entity type:
         try{
             // for single itinerary:
             Report itineraryReport = new Report("itineraryReport.txt");
@@ -324,5 +326,31 @@ public class Main {
         } catch (IOException e) {
             System.err.println("An error occurred during report creation! : " + e);
         }
+            // dto type:
+        try{
+            // fetch the itineraries from the db:
+            List<ItineraryDto> itineraryDtoList = ItineraryDao.getItinerariesDTO();
+            // for single itinerary:
+            Report itineraryDtoReport = new Report("itineraryDtoReport.txt");
+            ReportMaker.createSingleItineraryDtoReport("ItineraryDto report\n", itineraryDtoReport, itineraryDtoList.get(0));
+            // for all itineraries:
+            Report itineraryDtoListReport = new Report("itineraryDtosReport.txt");
+            ReportMaker.createItineraryDtoListReport("Itineraries Report\n", itineraryDtoListReport, itineraryDtoList);
+//            // printing the reports:
+            System.out.println("\n");
+            ReportMaker.printReport(itineraryDtoReport.getReportName());
+            System.out.println("\n\n");
+            ReportMaker.printReport(itineraryDtoListReport.getReportName());
+        } catch (IOException e) {
+            System.err.println("An error occurred during report creation! : " + e);
+        }
+
+        // XIII. Point 9: some additional reports:
+            // 1. Create a report for a total amount of executed itineraries
+                // 1.1. write(int numberOfExecutedItineraries -> if dateOfDeparture.isBefore(LocalDate.now()) count++)) this ain't it, but we can work on it
+            // 2. Add to report sum(itinerary cost) of all executed itineraries
+            // 3. Add to report number of itineraries executed by a certain driver
+            // 4. Add to report company profit for a certain amount of time
+            // 5. Add to report how much a company has earned by each driver
     }
 }

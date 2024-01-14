@@ -1,6 +1,7 @@
 package org.transportCompanyProject.models.reports;
 
 import org.transportCompanyProject.models.dao.*;
+import org.transportCompanyProject.models.dto.ItineraryDto;
 import org.transportCompanyProject.models.entity.Cargo;
 import org.transportCompanyProject.models.entity.Itinerary;
 
@@ -47,7 +48,7 @@ public class ReportMaker {
         // getCargo()
         for (Cargo cargo : itinerary.getCargo()) {
             writer.write("\nCargo id: " + cargo.getId());
-            writer.write("\t\tCargo type: " + cargo.getClass());
+            writer.write("\t\tCargo type: " + cargo.getClass().getSimpleName());
         }
 
         writer.write("\n");
@@ -56,13 +57,51 @@ public class ReportMaker {
     /**
      * Adds a list of itineraries to the report file.
      *
-     * @param itineraries The list of itineraries to be added to the report.
-     * @param report      The report to which the itineraries are added.
+     * @param itineraries  The list of itineraries to be added to the report.
+     * @param report       The report to which the itineraries are added.
      * @throws IOException If an I/O error occurs.
      */
     public static void addItineraryListToReport(List<Itinerary> itineraries, Report report) throws IOException {
         for(Itinerary itinerary : itineraries){
             addItineraryToReport(itinerary, report);
+        }
+    }
+
+    /**
+     * Adds a list of itineraryDto's to the report file excluding their cargo.
+     *
+     * @param itinerary    The itineraryDto to be added to the report.
+     * @param report       The report to which the itineraryDto details are added.
+     * @throws IOException If an I/O error occurs.
+     */
+    public static void addItineraryDtoToReportWithoutCargo(ItineraryDto itinerary, Report report) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(report.getReportName(), true));
+        writer.write("\nItinerary id: " + itinerary.getId());
+        writer.write("\nStarting point: " + itinerary.getStartingPoint());
+        writer.write("\nDestination: " + itinerary.getDestination());
+        writer.write("\nDate of departure: " + itinerary.getDateOfDeparture());
+        writer.write("\nDate of arrival: " + itinerary.getDateOfArrival());
+        writer.write("\nCost without overcharge: " + itinerary.getCost());
+//        writer.write("\nCost with overcharge: " + ItineraryDao.calculatePriceWithOvercharge(itinerary.getCost(), itinerary.getVehicle().getCompany().getOvercharge()));
+        writer.write("\nClient: id: " + ClientDao.getClientById(itinerary.getClient().getId()).getId()
+                + "\tname: " + ClientDao.getClientById(itinerary.getClient().getId()).getName());
+        writer.write("\nDriver: " + DriverDao.getDriverById(itinerary.getDriver().getId()));
+        writer.write("\nVehicle id: " + VehicleDao.getVehicleById(itinerary.getVehicle().getId()).getId());
+        writer.write("\tVehicle type: " + VehicleTypeDao.getVehicleTypeById(itinerary.getVehicle().getVehicleType().getId()).getType());
+
+        writer.write("\n");
+        writer.close();
+    }
+    /**
+     * Adds a list of itineraries to the report file.
+     *
+     * @param itineraries  The list of itineraryDto's to be added to the report.
+     * @param report       The report to which the itineraryDto's are added.
+     * @throws IOException If an I/O error occurs.
+     */
+    public static void addItineraryDtoListToReport(List<ItineraryDto> itineraries, Report report) throws IOException {
+        for(ItineraryDto itinerary : itineraries){
+            addItineraryDtoToReportWithoutCargo(itinerary, report);
         }
     }
     /**
@@ -92,12 +131,29 @@ public class ReportMaker {
         // adding the itinerary
         addItineraryToReport(itinerary, report);
     }
+
+    /**
+     * Creates a report with a single itinerary.
+     *
+     * @param reportTitle  The title of the report.
+     * @param report       The report to be created.
+     * @param itinerary    The itineraryDto to be added to the report.
+     * @throws IOException If an I/O error occurs.
+     */
+    public static void createSingleItineraryDtoReport(String reportTitle, Report report, ItineraryDto itinerary) throws IOException {
+        // if we have anything in the report file, delete it.
+        deleteReport(report.getReportName());
+        // adding the report title
+        writeReportTitle(reportTitle, report);
+        // adding the itinerary
+        addItineraryDtoToReportWithoutCargo(itinerary, report);
+    }
     /**
      * Creates a report with a list of itineraries.
      *
-     * @param reportTitle The title of the report.
-     * @param report      The report to be created.
-     * @param itineraries The list of itineraries to be added to the report.
+     * @param reportTitle  The title of the report.
+     * @param report       The report to be created.
+     * @param itineraries  The list of itineraries to be added to the report.
      * @throws IOException If an I/O error occurs.
      */
     public static void createItineraryListReport(String reportTitle, Report report, List<Itinerary> itineraries) throws IOException {
@@ -107,6 +163,23 @@ public class ReportMaker {
         writeReportTitle(reportTitle, report);
         // adding the itineraries
         addItineraryListToReport(itineraries, report);
+    }
+
+    /**
+     * Creates a report with a list of itineraryDto's.
+     *
+     * @param reportTitle  The title of the report.
+     * @param report       The report to be created.
+     * @param itineraries  The list of itineraryDto's to be added to the report.
+     * @throws IOException If an I/O error occurs.
+     */
+    public static void createItineraryDtoListReport(String reportTitle, Report report, List<ItineraryDto> itineraries) throws IOException {
+        // if we have anything in the report file, delete it.
+        deleteReport(report.getReportName());
+        // adding the report title
+        writeReportTitle(reportTitle, report);
+        // adding the itineraries
+        addItineraryDtoListToReport(itineraries, report);
     }
     /**
      * Prints the contents of the report file to the console.
