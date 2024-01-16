@@ -25,6 +25,12 @@ public class Main {
         Company company2 = new Company(2, "Orbico");
         Company company3 = new Company(3, "Telenor");
         Company company4 = new Company(4, "Union Ivkoni");
+
+        // displaying how to delete a company:
+        Company companyForDeletion = new Company(7, "Union Ivkoni 2");
+        CompanyDao.saveOrUpdateCompany(companyForDeletion);
+        CompanyDao.deleteCompany(companyForDeletion);
+
         CompanyDao.saveOrUpdateCompany(company1);
         CompanyDao.saveOrUpdateCompany(company2);
         CompanyDao.saveOrUpdateCompany(company3);
@@ -51,9 +57,13 @@ public class Main {
         // 1. add clients
         Client client1 = new Client(1, "Samantha");
         Client client2 = new Client(2, "Lidl");
+//        Client clientForDeletion = new Client(3, "Lidl");
+
         ClientDao.saveOrUpdateClient(client1);
         ClientDao.saveOrUpdateClient(client2);
-//        ClientDao.deleteClient(ClientDao.getClientById(3));
+//        ClientDao.saveOrUpdateClient(clientForDeletion);
+//        ClientDao.deleteClient(clientForDeletion);
+
         // 2. display clients
         ClientDao.getClientsDTO().stream().forEach(System.out::println);
 
@@ -172,37 +182,51 @@ public class Main {
         CompanyDao.saveOrUpdateCompany(nestle1);
         CompanyDao.saveOrUpdateCompany(nestle2);
         // 3. *written above*
+        System.out.println("\nFind companies by balance between 10000 and 50000:");
         CompanyDao.companiesFindByBalanceBetween(BigDecimal.valueOf(10000), BigDecimal.valueOf(50000)).forEach(System.out::println);
         // 4. Order by income
+        System.out.println("\nOrder companies by balance:");
         CompanyDao.getOrderedCompaniesByBalance().forEach(System.out::println);
         // 5. Order by name
+        System.out.println("\nOrder companies by name:");
         CompanyDao.getOrderedCompaniesByName().forEach(System.out::println);
         // 6. Order by name and income
+        System.out.println("\nOrder companies by a name starting with something and balance > 9000:");
         CompanyDao.findByNameStartingWithAndBalanceGreaterThan("Nestle", BigDecimal.valueOf(9000)).forEach(System.out::println);
         // 7. Queries for Employees:
             // 7.1. find by salary
+        System.out.println("\nFind employees with salary between 3000 and 4000:");
         EmployeeDao.employeesFindBySalaryBetween(BigDecimal.valueOf(3000), BigDecimal.valueOf(4000)).forEach(System.out::println);
             // 7.2. find by name start - not wanted
+        System.out.println("\nFind employees with names starting with \"Johan\":");
         EmployeeDao.employeesFindByNameStartingWith("Johan").forEach(System.out::println);
             // 7.3. order employees by salary(ACS):
+        System.out.println("\nOrder employees by salary in ascending order:");
         EmployeeDao.getOrderedEmployeesBySalaryASC().forEach(System.out::println);
             // 7.4. order employees by salary(DESC):
+        System.out.println("\nOrder employees by salary in descending order:");
         EmployeeDao.getOrderedEmployeesBySalaryDESC().forEach(System.out::println);
             // 7.5. order employees by position(ASC):
+        System.out.println("\nOrder employees by position:");
         EmployeeDao.getOrderedEmployeesByPositionASC().forEach(System.out::println);
             // 7.6. order employees by position(ASC) and salary(DESC):
+        System.out.println("\nOrder employees by position(asc) and salary(desc):");
         EmployeeDao.getOrderedEmployeesByASCPositionANDDESCSalary().forEach(System.out::println);
             // 7.7. find employees that have a certain positionType:
+        System.out.println("\nFind employees with a certain position:");
         EmployeeDao.employeesFindByPosition(PositionType.ADMINISTRATOR).forEach(System.out::println);
 
 
         // 8. find itineraries with the same destination:
             // 8.1. 2 to Plovdiv:
+        System.out.println("\nFind itineraries to Plovdiv:");
         ItineraryDao.itinerariesFindByDestination("Plovdiv").forEach(System.out::println);
             // 8.2. none to Shumen:
+        System.out.println("\nFind itineraries to Shumen:");
         ItineraryDao.itinerariesFindByDestination("Shumen").forEach(System.out::println);
 
         // 9. order itineraries by destination:
+        System.out.println("\nOrder itineraries by destination:");
         ItineraryDao.getOrderedItinerariesByDestination().forEach(System.out::println);
 
         // IX. Trying out Obligation with GenericDao - works fine.
@@ -299,34 +323,35 @@ public class Main {
 //        } catch (Exception e) {
 //            System.err.println(e);
 //        }
-        // now let's try it when the client has enough money.
+//        // now let's try it when the client has enough money.
         Client clientCopy = ClientDao.getClientById(itinerary1.getClient().getId());
         clientCopy.setBalance(BigDecimal.valueOf(2000));
         ClientDao.saveOrUpdateClient(clientCopy);
 
-//        try {
-//            ItineraryDao.executeItinerary(itinerary1);
-//        } catch (Exception e) {
-//            System.err.println(e);
-//        }
+        try {
+            ItineraryDao.executeItinerary(itinerary1);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
 
         // XII. Report making
             // 1. entity type:
-        try{
-            // for single itinerary:
-            Report itineraryReport = new Report("itineraryReport.txt");
-            ReportMaker.createSingleItineraryReport("Itinerary report\n", itineraryReport, itinerary1);
-            // for all itineraries:
-            Report itinerariesListReport = new Report("itinerariesReport.txt");
-            ReportMaker.createItineraryListReport("Itineraries Report\n", itinerariesListReport, itineraryList);
-            // printing the reports:
-            System.out.println("\n");
-            ReportMaker.printReport(itineraryReport.getReportName());
-            System.out.println("\n\n");
-            ReportMaker.printReport(itinerariesListReport.getReportName());
-        } catch (IOException e) {
-            System.err.println("An error occurred during report creation! : " + e);
-        }
+//        try{
+//            // for single itinerary:
+//            Report itineraryReport = new Report("itineraryReport.txt");
+//            ReportMaker.createSingleItineraryReport("Itinerary report\n", itineraryReport, itinerary1);
+//            // for all itineraries:
+//            Report itinerariesListReport = new Report("itinerariesReport.txt");
+//            ReportMaker.createItineraryListReport("Itineraries Report\n", itinerariesListReport, itineraryList);
+//            // printing the reports:
+//            System.out.println("\n");
+//            ReportMaker.printReport(itineraryReport.getReportName());
+//            System.out.println("\n\n");
+//            ReportMaker.printReport(itinerariesListReport.getReportName());
+//        } catch (IOException e) {
+//            System.err.println("An error occurred during report creation! : " + e);
+//        }
+
             // dto type:
         try{
             // fetch the itineraries from the db:
@@ -357,8 +382,5 @@ public class Main {
         // Alternatively, using forEach on the entry set
         driversAndTheirExecutedItinerariesCount.forEach((driver, count) ->
                 System.out.println("Driver: " + driver.getName() + ", Executed Itineraries Count: " + count));
-        // XIII. Point 9: some additional reports:
-            // 4. Add to report company profit for a certain amount of time
-            // 5. Add to report how much a company has earned by each driver
     }
 }

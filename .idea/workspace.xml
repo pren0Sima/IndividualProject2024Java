@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added javadocs to all daos.">
+    <list default="true" id="f4557a6a-c5f7-43f1-acaf-99648a88f3f6" name="Changes" comment="Added a way to display a driver's executed itineraries count and put each driver and corresponding itinerary count into a map.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ClientDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ClientDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/CompanyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/CompanyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/EmployeeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/EmployeeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ItineraryCargoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ItineraryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/ItineraryDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/VehicleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/dto/VehicleDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/ReportMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/models/reports/ReportMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/itinerariesReport.txt" beforeDir="false" afterPath="$PROJECT_DIR$/itinerariesReport.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/transportCompanyProject/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,7 +347,39 @@
       <option name="project" value="LOCAL" />
       <updated>1704655261742</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added javadocs to Report, ReportMaker and dto classes.">
+      <option name="closed" value="true" />
+      <created>1704656549912</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1704656549912</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added dto versions of the existing report making functions, as well as documentation to them.">
+      <option name="closed" value="true" />
+      <created>1705244986887</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1705244986887</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Added 2 methods for the executed itineraries. One of them returns the total number of ex. itineraries, the other returns their total cost.">
+      <option name="closed" value="true" />
+      <created>1705247791327</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1705247791327</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added a way to display a driver's executed itineraries count and put each driver and corresponding itinerary count into a map.">
+      <option name="closed" value="true" />
+      <created>1705256996148</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1705256996148</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,11 +394,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="VehicleType added and started Vehicle abstraction" />
-    <MESSAGE value="Added some functionality to the Vehicle and VehicleType. Need to figure out the dto's to display the foreign keys(for getVehicles())." />
-    <MESSAGE value="Added Driver, DriverDao, DrivingQualification, DrivingQualificationDao and merged Driver and DrivingQualification into a mapping table. Need to test the methods for them in main." />
-    <MESSAGE value="Added Cargo, Goods and Passenger classes and added them in SessionFactoryUtil." />
-    <MESSAGE value="Added GenericDao, tried it in main() with the Cargo abstraction. Tried out the Driver and DrivingQualification part and experimented with arrays." />
     <MESSAGE value="Changed up some methods and extended VehicleTypeDto." />
     <MESSAGE value="Added foreign keys to Itinerary." />
     <MESSAGE value="Added sorting and filtering functions for Company." />
@@ -393,7 +414,12 @@
     <MESSAGE value="Added javadocs to configuration's, exceptions' and enumerations' packages." />
     <MESSAGE value="Added javadocs to CargoDao." />
     <MESSAGE value="Added javadocs to all daos." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added javadocs to all daos." />
+    <MESSAGE value="Added javadocs to Report, ReportMaker and dto classes." />
+    <MESSAGE value="Fixed ReportMaker so that it prints the simple name of a class in the reports." />
+    <MESSAGE value="Added dto versions of the existing report making functions, as well as documentation to them." />
+    <MESSAGE value="Added 2 methods for the executed itineraries. One of them returns the total number of ex. itineraries, the other returns their total cost." />
+    <MESSAGE value="Added a way to display a driver's executed itineraries count and put each driver and corresponding itinerary count into a map." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a way to display a driver's executed itineraries count and put each driver and corresponding itinerary count into a map." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
