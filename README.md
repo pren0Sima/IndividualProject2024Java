@@ -20,3 +20,6 @@ git clone https://github.com/pren0Sima/IndividualProject2024Java.git
 4. Run the programme and love your life!
 
 In order to make changes to the contents of the database, the main file should simply be modified.
+
+## Credits
+This project was created for a Java course in New Bulgarian University in the Autumn semester of 2023/2024 and was conducted and supervised by Hristina Kostadinova (hkostadinova@gmail.com).
